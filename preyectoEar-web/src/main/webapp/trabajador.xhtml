@@ -6,12 +6,19 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{trabajadorController.user.rol}</title>
-        <f:event type="preRenderView" listener="#{trabajadorController.validarSesion()}" />
+        <f:event type="preRenderView" listener="#{trabajadorController.validarSesion()}" >
+            <p:ajax update="@form:msg, @form:growl1" />
+        </f:event>
     </h:head>
     <h:body>
         <h:form>
-            Bienvenido #{trabajadorController.user.rol} #{trabajadorController.user.nombres}
-            <p:commandButton action="#{trabajadorController.cerrarSesion()}" value="#{msg.btnSalir}" />
+            <p:messages id="msg" showDetail="true" showSummary="false"
+                                autoUpdate="true" closable="true" />
+            <p:growl id="growl1" showDetail="true" />
+            <p:panel styleClass="box-solid box-info" header="#{msg.bienvenida}" >
+                <h2>#{trabajadorController.user.rol} #{trabajadorController.user.nombres}</h2>
+                <p:commandButton action="#{trabajadorController.cerrarSesion()}" value="#{msg.btnSalir}" styleClass="btn btn-block btn-success" />
+            </p:panel>
         </h:form>
     </h:body>
 </html>

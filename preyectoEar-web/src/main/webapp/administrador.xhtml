@@ -10,8 +10,13 @@
     </h:head>
     <h:body>
         <h:form>
-            #{msg.bienvenida} #{administradorController.user.rol} #{administradorController.user.nombres}
-            <p:commandButton action="#{administradorController.cerrarSesion()}" value="#{msg.btnSalir}" />
+            <p:messages id="msg" showDetail="true" showSummary="false"
+                                autoUpdate="true" closable="true" />
+            <p:growl id="growl1" showDetail="true" />
+            <p:panel styleClass="box-solid box-info" header="#{msg.bienvenida}" >
+                <h2>#{administradorController.user.rol} #{administradorController.user.nombres}</h2>
+                <p:commandButton action="#{administradorController.cerrarSesion()}" value="#{msg.btnSalir}" styleClass="btn btn-block btn-success" />
+            </p:panel>
         </h:form>
     </h:body>
 </html>
