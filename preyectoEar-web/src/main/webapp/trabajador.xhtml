@@ -11,7 +11,7 @@
     <h:body>
         <h:form>
             Bienvenido #{trabajadorController.user.rol} #{trabajadorController.user.nombres}
-            <p:commandButton action="#{trabajadorController.cerrarSesion()}" value="Salir" />
+            <p:commandButton action="#{trabajadorController.cerrarSesion()}" value="#{msg.btnSalir}" />
         </h:form>
     </h:body>
 </html>

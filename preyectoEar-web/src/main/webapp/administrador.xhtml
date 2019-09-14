@@ -5,13 +5,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>#{administradorController.user.rol}</title>
         <f:event type="preRenderView" listener="#{administradorController.validarSesion()}" />
     </h:head>
     <h:body>
         <h:form>
-            Bienvenido #{administradorController.user.rol} #{administradorController.user.nombres}
-            <p:commandButton action="#{administradorController.cerrarSesion()}" value="Salir" />
+            #{msg.bienvenida} #{administradorController.user.rol} #{administradorController.user.nombres}
+            <p:commandButton action="#{administradorController.cerrarSesion()}" value="#{msg.btnSalir}" />
         </h:form>
     </h:body>
 </html>
