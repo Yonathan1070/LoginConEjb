@@ -12,23 +12,25 @@ import java.util.List;
 import javax.ejb.Stateful;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase DatosUsuarios
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
 @Stateful
 public class DatosUsuarios implements IDatosUsuarios {
-
+    //Declaracion de los atributos privados de la clase
     private Persona usuario1;
     private Persona usuario2;
     private Persona usuario3;
     private List<Persona> listaPersonas;
-
+    //Metodo que convierte nuestra lista en un ArrayList
     public DatosUsuarios() {
         listaPersonas  = new ArrayList();
     }
     
     
-    
+    //Metodo de agregar Usuarios con datos quemados
     @Override
     public void agregarUsuarios(){
         usuario1 = new Persona("Yonathan Bohorquez", "yonny", "1070", "Administrador");
@@ -40,7 +42,7 @@ public class DatosUsuarios implements IDatosUsuarios {
         listaPersonas.add(usuario2);
         listaPersonas.add(usuario3);
     }
-    
+    //Metodo que obtiene el usuario ingresado y compara los datos con la lista de usuarios quemados
     @Override
     public Persona obtenerUsuario(String username, String password){
         for (Persona usuario : listaPersonas) {

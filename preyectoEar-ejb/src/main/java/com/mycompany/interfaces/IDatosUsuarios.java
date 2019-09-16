@@ -9,9 +9,13 @@ import com.mycompany.dto.Persona;
 import javax.ejb.Local;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Interface IDatosUsuarios
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
+
+//interface de conexion local y sus metodos  
 @Local
 public interface IDatosUsuarios {
     public void agregarUsuarios();

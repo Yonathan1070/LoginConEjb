@@ -14,20 +14,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase SupervisorController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
 @Named
 @SessionScoped
 public class SupervisorController implements Serializable{
-
+    //Declaracion del atributo privado de la clase
     private Persona user;
     /**
-     * Creates a new instance of SupervisorController
+     * Creacion nueva instancia de SupervisorController
      */
+    //Constructor vacio de la clase
     public SupervisorController() {
     }
-    
+    //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos para estar como rol supervisor
     public void validarSesion() {
         try {
             FacesContext faces = FacesContext.getCurrentInstance();
@@ -52,16 +55,16 @@ public class SupervisorController implements Serializable{
 
         }
     }
-    
+    //Metodo de cierre de sesion y redireccionamiento al index
     public String cerrarSesion(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index?faces-redirect=true";
     }
-    
+    //Metodo que obtiene el valor del atributo User
     public Persona getUser() {
         return user;
     }
-
+    //Metodo que asigna el avlor del atributo user al parametro user
     public void setUser(Persona user) {
         this.user = user;
     }

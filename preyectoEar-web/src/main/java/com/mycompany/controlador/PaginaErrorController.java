@@ -11,31 +11,33 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase PaginaErrorController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
 @Named
 @SessionScoped
 public class PaginaErrorController implements Serializable {
 
     /**
-     * Creates a new instance of PaginaErrorController
+     * Creacion nueva instancia de PaginaErrorController
      */
+    //Constructor vacio de la clase
     public PaginaErrorController() {
     }
-
+    //Declaracion atributo privado
     private String message;
-
+    //Metodo que obtiene el valor del atributo message
     public String getMessage() {
         return message;
     }
-
+    //Metodo que asigna el valor del atributo message al parametro message
     public void setMessage(String message) {
         this.message = message;
     }
 
     public String navigate() {
-        // Assume an exception has been thrown by some business logic
         System.out.println(10 / 0);
         return "index";
     }

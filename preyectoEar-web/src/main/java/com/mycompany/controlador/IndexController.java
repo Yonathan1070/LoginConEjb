@@ -17,26 +17,30 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase IndexController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class IndexController implements Serializable {
-
+    //Declaracion atributos privados de la clase
     private List<Persona> listaUsuarios;
     private String username;
     private String password;
+    //Implementacion de la Interface IDatosUsuarios
     @EJB
     IDatosUsuarios usuarios;
 
     /**
-     * Creates a new instance of IndexController
+     * Creacion nueva instancia de IndexController
      */
+    //Metodo que convierte nuestra lista en un ArrayList
     public IndexController() {
         listaUsuarios = new ArrayList();
     }
-
+    //Metodo que obtiene el usuario y valida datos correctos de inicio de sesion
     public String obtenerUsuarios() {
         Persona usuario;
         usuarios.agregarUsuarios();
@@ -51,19 +55,19 @@ public class IndexController implements Serializable {
             return "index";
         }
     }
-
+    //Metodo que obtiene el valor del atributo Username
     public String getUsername() {
         return username;
     }
-
+    //Metodo que asigna el valor del atributo username al parametro username
     public void setUsername(String username) {
         this.username = username;
     }
-
+    //Metodo que obtiene el valor del atributo password
     public String getPassword() {
         return password;
     }
-
+    //Metodo que asigna el valor del atributo password al parametro password
     public void setPassword(String password) {
         this.password = password;
     }

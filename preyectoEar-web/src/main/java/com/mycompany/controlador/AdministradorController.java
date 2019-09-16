@@ -13,20 +13,23 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase AdministradorController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 15-09-2019 1.0
  */
 @Named
 @SessionScoped
 public class AdministradorController implements Serializable {
-
+    //Declaracion del atributo privado de la clase
     private Persona user;
     /**
-     * Creates a new instance of AdministradorController
+     * Creacion nueva instancia AdministradorController
      */
+    //Constructor vacio de la clase
     public AdministradorController() {
     }
-
+    //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos para estar como rol administrador 
     public void validarSesion() {
         try {
             FacesContext faces = FacesContext.getCurrentInstance();
@@ -51,16 +54,16 @@ public class AdministradorController implements Serializable {
 
         }
     }
-    
+    //Metodo de cierre de sesion y redireccionamiento al index
     public String cerrarSesion(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index?faces-redirect=true";
     }
-
+    //Metodo que obtiene el valor del atributo User
     public Persona getUser() {
         return user;
     }
-
+    //Metodo que asigna el valor del atributo user al parametro user
     public void setUser(Persona user) {
         this.user = user;
     }
