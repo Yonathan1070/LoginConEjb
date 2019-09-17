@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ul class="sidebar-menu">
+        <li class="header">
+            Menú de Navegación
+        </li>
+        <li>
+            <a href="/index.xhtml">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        if (isMobile()) {
+            $('ul.sidebar-menu a.ui-link').click(function () {
+                $(this).prop('disabled', true);
+                showBar();
+            })
+        }
+    </script>
+
+</ui:composition>

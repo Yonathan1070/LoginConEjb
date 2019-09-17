@@ -5,7 +5,9 @@
  */
 package com.mycompany.controlador;
 
+import com.mycompany.beans.UsuarioFacadeLocal;
 import com.mycompany.dto.Persona;
+import com.mycompany.entity.Usuario;
 import com.mycompany.interfaces.IDatosUsuarios;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,14 +19,14 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- * Declaracion de la Clase IndexController
+ * Declaracion de la Clase LoginController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
  * @version 15-09-2019 1.0
  */
 @Named
 @RequestScoped
-public class IndexController implements Serializable {
+public class LoginController implements Serializable {
     //Declaracion atributos privados de la clase
     private List<Persona> listaUsuarios;
     private String username;
@@ -33,11 +35,13 @@ public class IndexController implements Serializable {
     @EJB
     IDatosUsuarios usuarios;
 
+    @EJB
+    UsuarioFacadeLocal usuarioCon;
     /**
      * Creacion nueva instancia de IndexController
      */
     //Metodo que convierte nuestra lista en un ArrayList
-    public IndexController() {
+    public LoginController() {
         listaUsuarios = new ArrayList();
     }
     //Metodo que obtiene el usuario y valida datos correctos de inicio de sesion
@@ -47,13 +51,21 @@ public class IndexController implements Serializable {
         usuario  = usuarios.obtenerUsuario(username, password);
         if (usuario!=null) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-            return usuario.getRol().toLowerCase()+"?faces-redirect=true";
+            return usuario.getRol().toLowerCase()+"/inicio?faces-redirect=true";
         } else {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                     "Credenciales Incorrectas"));
-            return "index";
+            return "login";
         }
+        /*Usuario user = new Usuario();
+        user.setNombre("Yonathan");
+        user.setContrasena("1070");
+        user.setUsuario("yonny");
+        usuarioCon.create(user);
+        FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+                    "Usuario Creado"));*/
     }
     //Metodo que obtiene el valor del atributo Username
     public String getUsername() {

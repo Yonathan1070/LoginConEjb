@@ -39,6 +39,6 @@ public class PaginaErrorController implements Serializable {
 
     public String navigate() {
         System.out.println(10 / 0);
-        return "index";
+        return "login";
     }
 }

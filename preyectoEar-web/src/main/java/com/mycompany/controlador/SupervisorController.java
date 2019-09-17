@@ -7,11 +7,13 @@ package com.mycompany.controlador;
 
 import com.mycompany.dto.Persona;
 import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 /**
  * Declaracion de la Clase SupervisorController
@@ -20,53 +22,22 @@ import javax.faces.view.ViewScoped;
  * @version 15-09-2019 1.0
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class SupervisorController implements Serializable{
-    //Declaracion del atributo privado de la clase
-    private Persona user;
+    @Inject
+    private BeanSesion sesion;
     /**
      * Creacion nueva instancia de SupervisorController
      */
     //Constructor vacio de la clase
     public SupervisorController() {
     }
-    //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos para estar como rol supervisor
-    public void validarSesion() {
-        try {
-            FacesContext faces = FacesContext.getCurrentInstance();
-            Persona usuario = (Persona) faces.getExternalContext().getSessionMap().get("usuario");
-            if (usuario == null) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-                        "Está tratando de ingresar violentamente al sitio.");
-                faces.addMessage(null, msg);
-                faces.getExternalContext().getFlash().setKeepMessages(true);
-                faces.getExternalContext().redirect("index.xhtml");
-            }
-            else if(!usuario.getRol().equals("Supervisor")){
-                FacesContext context = FacesContext.getCurrentInstance();
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-                        "No tiene permisos para ingresar a esta sección del sitio.");
-                faces.addMessage(null, msg);
-                context.getExternalContext().getFlash().setKeepMessages(true);
-                faces.getExternalContext().redirect(usuario.getRol().toLowerCase()+".xhtml");
-            }
-            user=usuario;
-        } catch (Exception e) {
+    public BeanSesion getSesion() {
+        return sesion;
+    }
 
-        }
-    }
-    //Metodo de cierre de sesion y redireccionamiento al index
-    public String cerrarSesion(){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "index?faces-redirect=true";
-    }
-    //Metodo que obtiene el valor del atributo User
-    public Persona getUser() {
-        return user;
-    }
-    //Metodo que asigna el avlor del atributo user al parametro user
-    public void setUser(Persona user) {
-        this.user = user;
+    public void setSesion(BeanSesion sesion) {
+        this.sesion = sesion;
     }
     
 }

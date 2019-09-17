@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../WEB-INF/templates/administrador/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+        <title>#{administradorController.sesion.user.rol}</title>
+        <f:event type="preRenderView" listener="#{administradorController.sesion.valSes('Administrador')}" />
+    </ui:define>
+    <ui:define name="title">
+        <p:growl autoUpdate="true" life="4000"/>
+        <h2 class="align-center">
+            Bienvenido a
+            <span class="text-aqua"> 
+                <i>
+                    <a style="text-transform: none;text-decoration: none"> #{administradorController.sesion.user.rol}JPA</a>
+                </i>
+            </span>
+            <br/>
+        </h2>
+    </ui:define>
+    <ui:define name="body">
+        <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+            <div class="box-header with-border">
+                <b>Acá</b> Titulo
+            </div>
+            <div class="box-body">
+                Acá Contenido
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
