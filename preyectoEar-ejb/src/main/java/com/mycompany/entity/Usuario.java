@@ -29,6 +29,8 @@ public class Usuario implements Serializable{
     private String usuario;
     @Column
     private String contrasena;
+    @Column
+    private String rol;
 
     public int getId() {
         return id;
@@ -60,6 +62,14 @@ public class Usuario implements Serializable{
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
     

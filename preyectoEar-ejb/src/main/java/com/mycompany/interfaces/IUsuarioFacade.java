@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.beans;
+package com.mycompany.interfaces;
 
 import com.mycompany.entity.Usuario;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author Yonathan
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface IUsuarioFacade {
 
     void create(Usuario usuario);
 
@@ -29,5 +29,7 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
 
     int count();
+    
+    Usuario login(String username, String password);
     
 }

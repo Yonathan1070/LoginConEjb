@@ -6,6 +6,7 @@
 package com.mycompany.controlador;
 
 import com.mycompany.dto.Persona;
+import com.mycompany.entity.Usuario;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -21,7 +22,7 @@ import javax.faces.context.FacesContext;
 public class BeanSesion implements Serializable{
 
     //Declaracion del atributo privado de la clase
-    private Persona user;
+    private Usuario user;
     /**
      * Creates a new instance of BeanSesion
      */
@@ -32,7 +33,7 @@ public class BeanSesion implements Serializable{
     public void valSes(String rol){
         try {
             FacesContext faces = FacesContext.getCurrentInstance();
-            Persona usuario = (Persona) faces.getExternalContext().getSessionMap().get("usuario");
+            Usuario usuario = (Usuario) faces.getExternalContext().getSessionMap().get("usuario");
             if (usuario == null) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                         "Está tratando de ingresar violentamente al sitio.");
@@ -60,11 +61,11 @@ public class BeanSesion implements Serializable{
         return "login?faces-redirect=true";
     }
     //Metodo que obtiene el valor del atributo User
-    public Persona getUser() {
+    public Usuario getUser() {
         return user;
     }
     //Metodo que asigna el valor del atributo user al parametro user
-    public void setUser(Persona user) {
+    public void setUser(Usuario user) {
         this.user = user;
     }
 }
