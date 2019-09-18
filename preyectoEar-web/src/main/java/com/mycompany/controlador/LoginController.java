@@ -7,8 +7,12 @@ package com.mycompany.controlador;
 
 import com.mycompany.interfaces.IUsuarioFacade;
 import com.mycompany.dto.Persona;
+import com.mycompany.entity.Cuenta;
+import com.mycompany.entity.Inversor;
 import com.mycompany.entity.Usuario;
+import com.mycompany.interfaces.CuentaFacadeLocal;
 import com.mycompany.interfaces.IDatosUsuarios;
+import com.mycompany.interfaces.InversorFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +43,12 @@ public class LoginController implements Serializable {
 
     @EJB
     IUsuarioFacade usuarioCon;
+    
+    @EJB
+    CuentaFacadeLocal cuentaCon;
+    
+    @EJB
+    InversorFacadeLocal inversorCon;
     /**
      * Creacion nueva instancia de IndexController
      */
@@ -53,6 +63,7 @@ public class LoginController implements Serializable {
     }
     //Metodo que obtiene el usuario y valida datos correctos de inicio de sesion
     public String obtenerUsuarios() {
+        //Login con BD Mapeada
         String redireccion=null;
         try{
             System.out.println("Entra Metodo");
@@ -66,6 +77,8 @@ public class LoginController implements Serializable {
         }
         return redireccion;
         
+        
+        //Login Quemado
         /*Persona usuario;
         usuarios.agregarUsuarios();
         usuario  = usuarios.obtenerUsuario(username, password);
@@ -79,7 +92,7 @@ public class LoginController implements Serializable {
             return "login";
         }*/
         
-        
+        //Insert Usuario Mapeo
         /*Usuario user = new Usuario();
         user.setNombre("Yonathan");
         user.setContrasena("1070");
@@ -88,6 +101,17 @@ public class LoginController implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
                     "Usuario Creado"));*/
+        
+        //One to One
+        /*Inversor inversor = new Inversor();
+        inversor.setNombre("Yonathan");
+        Cuenta cuenta = new Cuenta();
+        cuenta.setNumeroCuenta("123456-AB");
+        inversor.setCuenta(cuenta);
+        cuenta.setInversor(inversor);
+        //cuentaCon.create(cuenta);
+        inversorCon.create(inversor);
+        System.out.println("Finalizado...");*/
     }
     //Metodo que obtiene el valor del atributo Username
     public String getUsername() {
