@@ -34,7 +34,7 @@ import javax.inject.Named;
 public class LoginController implements Serializable {
     //Declaracion atributos privados de la clase
     private List<Persona> listaUsuarios;
-    private Usuario usuario;
+    private Persona usuario;
     private String username;
     private String password;
     //Implementacion de la Interface IDatosUsuarios
@@ -57,20 +57,16 @@ public class LoginController implements Serializable {
         listaUsuarios = new ArrayList();
     }
     
-    @PostConstruct
-    public void init(){
-        usuario = new Usuario();
-    }
     //Metodo que obtiene el usuario y valida datos correctos de inicio de sesion
     public String obtenerUsuarios() {
         //Login con BD Mapeada
         String redireccion=null;
         try{
-            System.out.println("Entra Metodo");
-            usuario = usuarioCon.login(username, password);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-            return usuario.getRol().toLowerCase()+"/inicio?faces-redirect=true";
+            Persona p = usuarioCon.login(username, password);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", p);
+            return p.getRol().toLowerCase()+"/inicio?faces-redirect=true";
         }catch(Exception e){
+            System.err.println("Error: "+e);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                     "Credenciales Incorrectas"));

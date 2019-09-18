@@ -16,6 +16,7 @@ import java.io.Serializable;
  */
 public class Persona implements Serializable{
     //Declaracion de los atributos privados de la clase
+    private int id;
     private String nombres;
     private String username;
     private String password;
@@ -27,6 +28,28 @@ public class Persona implements Serializable{
         this.password = password;
         this.rol = rol;
     }
+
+    public Persona(int id, String nombres, String username, String password, String rol) {
+        this.id = id;
+        this.nombres = nombres;
+        this.username = username;
+        this.password = password;
+        this.rol = rol;
+    }
+
+    public Persona() {
+    }
+    
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     //Metodo que obtiene el valor del atributo Nombres
     public String getNombres() {
         return nombres;

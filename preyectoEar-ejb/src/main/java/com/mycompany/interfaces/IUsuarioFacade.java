@@ -5,6 +5,7 @@
  */
 package com.mycompany.interfaces;
 
+import com.mycompany.dto.Persona;
 import com.mycompany.entity.Usuario;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,6 +31,6 @@ public interface IUsuarioFacade {
 
     int count();
     
-    Usuario login(String username, String password);
+    Persona login(String username, String password);
     
 }

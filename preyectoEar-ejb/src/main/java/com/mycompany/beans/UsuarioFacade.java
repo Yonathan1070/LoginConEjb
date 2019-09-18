@@ -5,6 +5,7 @@
  */
 package com.mycompany.beans;
 
+import com.mycompany.dto.Persona;
 import com.mycompany.interfaces.IUsuarioFacade;
 import com.mycompany.entity.Usuario;
 import java.util.List;
@@ -29,20 +30,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
     }
 
     @Override
-    public Usuario login(String username, String password) {
+    public Persona login(String username, String password) {
+        Persona dtoPersona = null;
         Usuario user = null;
         try {
             Query consulta = em.createQuery("FROM Usuario u WHERE u.usuario = ?1 and  u.contrasena = ?2");
             consulta.setParameter(1, username);
             consulta.setParameter(2, password);
             List<Usuario> lista = consulta.getResultList();
-            if(!lista.isEmpty())
+            if(!lista.isEmpty()){
                 user = lista.get(0);
+                dtoPersona = new Persona(user.getId(), user.getNombre(), user.getUsuario(), user.getContrasena(), user.getRol());
+            }
         } catch (Exception e) {
-            throw e;
+            System.err.println("Error EJB: "+e.getCause());
         }
 
-        return user;
+        return dtoPersona;
     }
 
     public UsuarioFacade() {
