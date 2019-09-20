@@ -8,8 +8,11 @@ package com.mycompany.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,21 +21,25 @@ import javax.persistence.Table;
  * @author Yonathan
  */
 @Entity
-@Table
-public class Cuenta implements Serializable{
+@Table(name = "cuentados")
+public class CuentaDos implements Serializable{
     @Id
-    @Column(name = "inversor_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(name = "numero_cuenta")
     private String numeroCuenta;
-    @OneToOne
-    @MapsId
-    private Inversor inversor;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "INVERSOR_ID")
+    //@OneToOne
+    //@MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inversor_id")
+    private InversorDos inversor;
 
-    public Cuenta() {
+    public CuentaDos() {
     }
 
-    public Cuenta(int id, String numeroCuenta, Inversor inversor) {
+    public CuentaDos(int id, String numeroCuenta, InversorDos inversor) {
         this.id = id;
         this.numeroCuenta = numeroCuenta;
         this.inversor = inversor;
@@ -54,13 +61,11 @@ public class Cuenta implements Serializable{
         this.numeroCuenta = numeroCuenta;
     }
 
-    public Inversor getInversor() {
+    public InversorDos getInversor() {
         return inversor;
     }
 
-    public void setInversor(Inversor inversor) {
+    public void setInversor(InversorDos inversor) {
         this.inversor = inversor;
     }
-    
-    
 }

@@ -7,9 +7,9 @@ package com.mycompany.beans;
 
 import com.mycompany.dto.DTOCuenta;
 import com.mycompany.dto.DTOInversor;
-import com.mycompany.entity.Cuenta;
-import com.mycompany.interfaces.InversorFacadeLocal;
-import com.mycompany.entity.Inversor;
+import com.mycompany.entity.CuentaDos;
+import com.mycompany.interfaces.InversorDosFacadeLocal;
+import com.mycompany.entity.InversorDos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
  * @author Yonathan
  */
 @Stateless
-public class InversorFacade extends AbstractFacade<Inversor> implements InversorFacadeLocal {
+public class InversorDosFacade extends AbstractFacade<InversorDos> implements InversorDosFacadeLocal {
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -28,15 +28,15 @@ public class InversorFacade extends AbstractFacade<Inversor> implements Inversor
         return em;
     }
 
-    public InversorFacade() {
-        super(Inversor.class);
+    public InversorDosFacade() {
+        super(InversorDos.class);
     }
     
     @Override
     public void crearInversor(DTOInversor inv, DTOCuenta cuenta){
-        Inversor inversor = new Inversor();
+        InversorDos inversor = new InversorDos();
         inversor.setNombre(inv.getNombre());
-        Cuenta entityCuenta = new Cuenta();
+        CuentaDos entityCuenta = new CuentaDos();
         entityCuenta.setNumeroCuenta(cuenta.getNumeroCuenta());
         inversor.setCuenta(entityCuenta);
         entityCuenta.setInversor(inversor);

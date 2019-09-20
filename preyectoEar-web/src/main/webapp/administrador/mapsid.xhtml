@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../WEB-INF/templates/administrador/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+        <style type="text/css">
+            .ui-grid-row .ui-grid-col-2,
+            .ui-grid-row .ui-grid-col-10 {
+                padding: 0.5em 0;
+                margin-left: 10px;
+            }
+
+            .ui-orderlist .ui-orderlist-list {
+                height: auto;
+            }
+
+            .ui-orderlist .ui-grid-row .ui-grid-col-2,
+            .ui-orderlist .ui-grid-row .ui-grid-col-10 {
+                padding: 0;
+            }
+        </style>
+        <title>#{administradorController.sesion.user.rol}</title>
+        <f:event type="preRenderView" listener="#{administradorController.sesion.valSes('Administrador')}" />
+    </ui:define>
+    <ui:define name="title">
+        <p:growl life="4000"/>
+    </ui:define>
+    <ui:define name="body">
+        <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+            <div class="box-header with-border">
+                <b>#{msg.tituloAdd}</b> #{msg.mapsDescripcion}
+            </div>
+            <div class="box-body">
+                <h:form>
+                    <p:growl life="4000" showDetail="true"/>
+                    <div class="ui-fluid">
+                        <p:panelGrid columns="3" columnClasses="ui-grid-col-2,ui-grid-col-4" styleClass="ui-fluid">
+                            <p:outputLabel for="nombre" value="#{msg.lblInversor}"/>
+                            <p:inputText id="nombre" value="#{mapsIdController.nombre}" required="true"/>
+                            <p:message for="nombre" />
+                            
+                            <p:outputLabel for="cuenta" value="#{msg.lblCuenta}"/>
+                            <p:inputText id="cuenta" value="#{mapsIdController.cuenta}" required="true"/>
+                            <p:message for="cuenta" />
+
+                            <p:spacer/>
+                            <p:commandButton value="#{msg.btnGuardar}" action="#{mapsIdController.agregarMapsId()}" update="@form" />
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

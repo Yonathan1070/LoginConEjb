@@ -7,7 +7,7 @@ package com.mycompany.interfaces;
 
 import com.mycompany.dto.DTOCuenta;
 import com.mycompany.dto.DTOInversor;
-import com.mycompany.entity.Inversor;
+import com.mycompany.entity.InversorDos;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,19 +16,19 @@ import javax.ejb.Local;
  * @author Yonathan
  */
 @Local
-public interface InversorFacadeLocal {
+public interface InversorDosFacadeLocal {
 
-    void create(Inversor inversor);
+    void create(InversorDos inversorDos);
 
-    void edit(Inversor inversor);
+    void edit(InversorDos inversorDos);
 
-    void remove(Inversor inversor);
+    void remove(InversorDos inversorDos);
 
-    Inversor find(Object id);
+    InversorDos find(Object id);
 
-    List<Inversor> findAll();
+    List<InversorDos> findAll();
 
-    List<Inversor> findRange(int[] range);
+    List<InversorDos> findRange(int[] range);
 
     int count();
     
