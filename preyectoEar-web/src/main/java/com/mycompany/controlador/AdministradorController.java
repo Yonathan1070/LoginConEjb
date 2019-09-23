@@ -5,7 +5,12 @@
  */
 package com.mycompany.controlador;
 
+import com.mycompany.entity.Inversor;
+import com.mycompany.interfaces.InversorFacadeLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,11 +27,26 @@ public class AdministradorController implements Serializable {
     
     @Inject
     private BeanSesion sesion;
+    
+    @EJB
+    InversorFacadeLocal inversorCon;
     /**
      * Creacion nueva instancia AdministradorController
      */
     //Constructor vacio de la clase
     public AdministradorController() {
+    }
+    
+    public void consultaJoin(){
+        List<Inversor> listaInversores = new ArrayList();
+        listaInversores = inversorCon.obtenerConJoin("Yonathan", "123456-AB");
+        for (Inversor inv : listaInversores) {
+            System.out.println("Nombre: "+inv.getNombre());
+            if(inv.getCuenta()!= null){
+                System.out.println("Cuenta: "+inv.getCuenta().getNumeroCuenta());
+            }
+            System.out.println("--------------------------------------------");
+        }
     }
     //get y set de la variable privada de la clase
     public BeanSesion getSesion() {

@@ -10,9 +10,12 @@ import com.mycompany.dto.DTOInversor;
 import com.mycompany.entity.Cuenta;
 import com.mycompany.interfaces.InversorFacadeLocal;
 import com.mycompany.entity.Inversor;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * Declaracion de la Clase InversorFacade
@@ -47,4 +50,11 @@ public class InversorFacade extends AbstractFacade<Inversor> implements Inversor
         create(inversor);
     }
     
+    @Override
+    public List<Inversor> obtenerConJoin(String nombre, String cuenta){
+        TypedQuery<Inversor> consulta = em.createNamedQuery("join", Inversor.class);
+        consulta.setParameter("nombre", nombre);
+        consulta.setParameter("cuenta", cuenta);
+        return consulta.getResultList();
+    }
 }

@@ -35,5 +35,7 @@ public interface InversorFacadeLocal {
 
     int count();
     
-    public void crearInversor(DTOInversor inv, DTOCuenta cuenta);
+    void crearInversor(DTOInversor inv, DTOCuenta cuenta);
+    
+    List<Inversor> obtenerConJoin(String nombre, String cuenta);
 }

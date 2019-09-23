@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,7 +26,9 @@ import javax.persistence.Table;
  */
 //Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
-@Table
+@NamedQueries({
+    @NamedQuery(name = "join", query = "FROM Inversor i LEFT JOIN  Cuenta c WHERE i.nombre = :nombre AND c.numeroCuenta = :cuenta")
+})
 public class Inversor implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

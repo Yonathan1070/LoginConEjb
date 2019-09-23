@@ -27,7 +27,10 @@
                 <b>Acá</b> Titulo
             </div>
             <div class="box-body">
-                Acá Contenido
+                <h:form>
+                    <p:growl id="gr1" showDetail="true" />
+                    <p:commandButton value="#{msg.btnConsulta}" action="#{administradorController.consultaJoin()}" update="@form:gr1" />
+                </h:form>
             </div>
         </div>
     </ui:define>
