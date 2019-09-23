@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Declaracion de la Clase Persona
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-19 1.0
+ * @version 22-09-19 1.0
  */
 public class Persona implements Serializable{
     //Declaracion de los atributos privados de la clase
@@ -36,11 +36,11 @@ public class Persona implements Serializable{
         this.password = password;
         this.rol = rol;
     }
-
+    //Constructor vacio de la clase
     public Persona() {
     }
     
-    
+    //getter y setter del atributo Id
 
     public int getId() {
         return id;

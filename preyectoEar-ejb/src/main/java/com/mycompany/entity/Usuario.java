@@ -14,9 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Usuario
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable{
@@ -31,7 +34,7 @@ public class Usuario implements Serializable{
     private String contrasena;
     @Column
     private String rol;
-
+    // getter y setter de los atributos privados de la clase
     public int getId() {
         return id;
     }

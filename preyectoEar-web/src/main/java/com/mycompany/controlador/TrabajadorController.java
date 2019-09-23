@@ -19,19 +19,21 @@ import javax.inject.Inject;
  * Declaracion de la Clase TrabajadorController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class TrabajadorController implements Serializable{
     @Inject
+    //Declaracion de la variable privada de la clase
     private BeanSesion sesion;
     /**
-     * Creacion nueva TrabajadorController
+     * Creacion nueva instacia de TrabajadorController
      */
     //Constructor vacio de la clase
     public TrabajadorController() {
     }
+    //get y set de la variable privada de la clase
     public BeanSesion getSesion() {
         return sesion;
     }

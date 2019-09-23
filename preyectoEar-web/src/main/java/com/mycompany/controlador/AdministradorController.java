@@ -14,7 +14,7 @@ import javax.inject.Named;
  * Declaracion de la Clase AdministradorController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 @Named
 @RequestScoped
@@ -28,7 +28,7 @@ public class AdministradorController implements Serializable {
     //Constructor vacio de la clase
     public AdministradorController() {
     }
-
+    //get y set de la variable privada de la clase
     public BeanSesion getSesion() {
         return sesion;
     }

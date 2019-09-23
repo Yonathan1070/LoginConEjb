@@ -15,11 +15,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase InversorDosFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
 @Stateless
 public class InversorDosFacade extends AbstractFacade<InversorDos> implements InversorDosFacadeLocal {
+    //Implementacion donde se llama a la unidad de persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -27,12 +30,13 @@ public class InversorDosFacade extends AbstractFacade<InversorDos> implements In
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la clase
     public InversorDosFacade() {
         super(InversorDos.class);
     }
     
     @Override
+    //Metodo donde se crea el inversor dos llamando al DTOInversor y DTOCuenta
     public void crearInversor(DTOInversor inv, DTOCuenta cuenta){
         InversorDos inversor = new InversorDos();
         inversor.setNombre(inv.getNombre());

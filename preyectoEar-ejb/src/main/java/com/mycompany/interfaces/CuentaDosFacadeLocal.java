@@ -11,9 +11,12 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Yonathan
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
 @Local
+//Interface con las acciones a implementar
 public interface CuentaDosFacadeLocal {
 
     void create(CuentaDos cuentaDos);

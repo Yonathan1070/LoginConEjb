@@ -12,7 +12,7 @@ import javax.ejb.Local;
  * Declaracion de la Interface IDatosUsuarios
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 
 //interface de conexion local y sus metodos  

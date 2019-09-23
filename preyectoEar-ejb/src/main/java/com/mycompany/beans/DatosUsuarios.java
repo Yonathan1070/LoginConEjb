@@ -15,7 +15,7 @@ import javax.ejb.Stateful;
  * Declaracion de la Clase DatosUsuarios
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 @Stateful
 public class DatosUsuarios implements IDatosUsuarios {

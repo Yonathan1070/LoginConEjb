@@ -19,12 +19,13 @@ import javax.inject.Inject;
  * Declaracion de la Clase SupervisorController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class SupervisorController implements Serializable{
     @Inject
+    //Declaracion de la variable privada de la clase
     private BeanSesion sesion;
     /**
      * Creacion nueva instancia de SupervisorController
@@ -32,6 +33,7 @@ public class SupervisorController implements Serializable{
     //Constructor vacio de la clase
     public SupervisorController() {
     }
+    //get y set de la variable privada de la clase
     public BeanSesion getSesion() {
         return sesion;
     }

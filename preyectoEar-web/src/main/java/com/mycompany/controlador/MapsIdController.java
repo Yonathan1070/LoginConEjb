@@ -17,24 +17,27 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase MapsIdController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class MapsIdController implements Serializable{
-
+    //Declaracion de los atributos privados de la clase
     private String nombre;
     private String cuenta;
-    
+    //Implementacion de EJB InversorFacadeLocal del paquete de interfaces
     @EJB
     InversorFacadeLocal inversorCon;
     /**
-     * Creates a new instance of MapsIdController
+     * Creacion una nueva instancia de MapsIdController
      */
+    //Constructor vacio de la clase
     public MapsIdController() {
     }
-    
+    //Metodo que agrega los datos de nombre y numero de cuenta mediante el metodo MapsId
     public void agregarMapsId(){
         DTOInversor dtoInversor = new DTOInversor();
         DTOCuenta dtoCuenta = new DTOCuenta();
@@ -45,7 +48,7 @@ public class MapsIdController implements Serializable{
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregado",
                     "Inversor "+nombre+" agregado satisfactoriamente"));
     }
-
+    //getter y setter de los atributos de la clase
     public String getNombre() {
         return nombre;
     }

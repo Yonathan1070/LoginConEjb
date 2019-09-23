@@ -12,11 +12,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase CuentaFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-2019 1.0
  */
 @Stateless
 public class CuentaFacade extends AbstractFacade<Cuenta> implements CuentaFacadeLocal {
+    //implementacion donde se llama a la unidad de persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -24,7 +27,7 @@ public class CuentaFacade extends AbstractFacade<Cuenta> implements CuentaFacade
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la clase
     public CuentaFacade() {
         super(Cuenta.class);
     }

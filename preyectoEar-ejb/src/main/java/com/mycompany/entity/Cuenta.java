@@ -14,9 +14,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Cuenta
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table
 public class Cuenta implements Serializable{
@@ -28,16 +31,16 @@ public class Cuenta implements Serializable{
     @OneToOne
     @MapsId
     private Inversor inversor;
-
+    //Constructor vacio de la clase
     public Cuenta() {
     }
-
+    //Constructor de los atributos de la clase
     public Cuenta(int id, String numeroCuenta, Inversor inversor) {
         this.id = id;
         this.numeroCuenta = numeroCuenta;
         this.inversor = inversor;
     }
-
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

@@ -27,7 +27,7 @@ import javax.inject.Named;
  * Declaracion de la Clase LoginController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 @Named
 @RequestScoped
@@ -40,13 +40,13 @@ public class LoginController implements Serializable {
     //Implementacion de la Interface IDatosUsuarios
     @EJB
     IDatosUsuarios usuarios;
-
+    //Implementacion de la interface IUsuarioFacade
     @EJB
     IUsuarioFacade usuarioCon;
-    
+    //Implementacion del entity CuentaFacadeLocal
     @EJB
     CuentaFacadeLocal cuentaCon;
-    
+    //Implementacion del entity InversorFacadeLocal
     @EJB
     InversorFacadeLocal inversorCon;
     /**

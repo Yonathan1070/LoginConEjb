@@ -15,12 +15,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase UsuarioFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-2019 1.0
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFacade {
-
+    //Implementacion donde se llama a la unidad de persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -28,8 +30,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
     @Override
+    //Metodo donde se hace la consulta para validacion de los datos en el momento del Login
     public Persona login(String username, String password) {
         Persona dtoPersona = null;
         Usuario user = null;
@@ -48,7 +51,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
 
         return dtoPersona;
     }
-
+    //Constructor de la clase
     public UsuarioFacade() {
         super(Usuario.class);
     }

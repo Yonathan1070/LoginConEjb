@@ -17,9 +17,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase InversorDos
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utlizar en la BD
 @Entity
 @Table(name = "inversordos")
 public class InversorDos implements Serializable{

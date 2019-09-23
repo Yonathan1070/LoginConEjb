@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * Declaracion de la Clase ObtenerSesion
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 15-09-2019 1.0
+ * @version 22-09-2019 1.0
  */
 public class ObtenerSesion {
     //Metodo que obtiene la Session del usuario

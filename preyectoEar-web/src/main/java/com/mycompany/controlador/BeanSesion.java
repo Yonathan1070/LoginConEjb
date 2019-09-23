@@ -14,8 +14,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase BeanSesion
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
 @Named
 @SessionScoped
@@ -24,12 +26,12 @@ public class BeanSesion implements Serializable{
     //Declaracion del atributo privado de la clase
     private Persona user;
     /**
-     * Creates a new instance of BeanSesion
+     * Creacion nueva instancia de BeanSesion
      */
     public BeanSesion() {
     }
     
-    //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos para estar como rol administrador 
+    //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos 
     public void valSes(String rol){
         try {
             FacesContext faces = FacesContext.getCurrentInstance();

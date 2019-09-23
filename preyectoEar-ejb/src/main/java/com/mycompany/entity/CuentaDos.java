@@ -17,9 +17,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase CuentaDos
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table(name = "cuentados")
 public class CuentaDos implements Serializable{
@@ -35,16 +38,16 @@ public class CuentaDos implements Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inversor_id")
     private InversorDos inversor;
-
+    //Constructor vacio de la clase
     public CuentaDos() {
     }
-
+    //Constructor de los atributos de la clase
     public CuentaDos(int id, String numeroCuenta, InversorDos inversor) {
         this.id = id;
         this.numeroCuenta = numeroCuenta;
         this.inversor = inversor;
     }
-
+    //gettter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

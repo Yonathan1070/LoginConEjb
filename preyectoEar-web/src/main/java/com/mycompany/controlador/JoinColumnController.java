@@ -17,24 +17,27 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase JoinColumnController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 22-09-19 1.0
  */
 @Named
 @RequestScoped
 public class JoinColumnController implements Serializable{
-
+    //Declaracion atributos privados de la clase
     private String nombre;
     private String cuenta;
     
     @EJB
     InversorDosFacadeLocal inversorCon;
     /**
-     * Creates a new instance of JoinColumnController
+     * Creacion nueva instancia de JoinColumnController
      */
+    //Constructor vacion de la clase
     public JoinColumnController() {
     }
-    
+    //Metodo de agregar datos de nombre  y numero de cuenta mediante el metodo JoinColumn
     public void agregarJoinColumn(){
         DTOInversor dtoInversor = new DTOInversor();
         DTOCuenta dtoCuenta = new DTOCuenta();
@@ -45,7 +48,7 @@ public class JoinColumnController implements Serializable{
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregado",
                     "Inversor "+nombre+" agregado satisfactoriamente"));
     }
-    
+    //getter y setter de los atributos de la clase
     public String getNombre() {
         return nombre;
     }
