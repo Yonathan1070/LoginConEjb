@@ -29,6 +29,8 @@
             <div class="box-body">
                 <h:form>
                     <p:growl id="gr1" showDetail="true" />
+                    <p:commandButton value="Add Depto" action="#{administradorController.crearDepartamento()}" update="@form:gr1" />
+                    <p:commandButton value="Add Empleado" action="#{administradorController.crearCliente()}" update="@form:gr1" />
                     <p:commandButton value="#{msg.btnConsulta}" action="#{administradorController.consultaJoin()}" update="@form:gr1" />
                 </h:form>
             </div>
