@@ -14,6 +14,9 @@ import com.mycompany.interfaces.CuentaFacadeLocal;
 import com.mycompany.interfaces.IDatosUsuarios;
 import com.mycompany.interfaces.InversorFacadeLocal;
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -25,6 +28,7 @@ import javax.inject.Named;
 
 /**
  * Declaracion de la Clase LoginController
+ *
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
  * @version 22-09-2019 1.0
@@ -32,7 +36,9 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class LoginController implements Serializable {
+
     //Declaracion atributos privados de la clase
+
     private List<Persona> listaUsuarios;
     private Persona usuario;
     private String username;
@@ -49,6 +55,7 @@ public class LoginController implements Serializable {
     //Implementacion del entity InversorFacadeLocal
     @EJB
     InversorFacadeLocal inversorCon;
+
     /**
      * Creacion nueva instancia de IndexController
      */
@@ -56,72 +63,77 @@ public class LoginController implements Serializable {
     public LoginController() {
         listaUsuarios = new ArrayList();
     }
-    
+
     //Metodo que obtiene el usuario y valida datos correctos de inicio de sesion
     public String obtenerUsuarios() {
         //Login con BD Mapeada
-        String redireccion=null;
-        try{
+        String redireccion = null;
+        try {
             Persona p = usuarioCon.login(username, password);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", p);
-            return p.getRol().toLowerCase()+"/inicio?faces-redirect=true";
-        }catch(Exception e){
-            System.err.println("Error: "+e);
+            return p.getRol().toLowerCase() + "/inicio?faces-redirect=true";
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                     "Credenciales Incorrectas"));
         }
         return redireccion;
-        
-        
+
         //Login Quemado
         /*Persona usuario;
-        usuarios.agregarUsuarios();
-        usuario  = usuarios.obtenerUsuario(username, password);
-        if (usuario!=null) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-            return usuario.getRol().toLowerCase()+"/inicio?faces-redirect=true";
-        } else {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-                    "Credenciales Incorrectas"));
-            return "login";
-        }*/
-        
+         usuarios.agregarUsuarios();
+         usuario  = usuarios.obtenerUsuario(username, password);
+         if (usuario!=null) {
+         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+         return usuario.getRol().toLowerCase()+"/inicio?faces-redirect=true";
+         } else {
+         FacesContext context = FacesContext.getCurrentInstance();
+         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+         "Credenciales Incorrectas"));
+         return "login";
+         }*/
         //Insert Usuario Mapeo
         /*Usuario user = new Usuario();
-        user.setNombre("Yonathan");
-        user.setContrasena("1070");
-        user.setUsuario("yonny");
-        usuarioCon.create(user);
-        FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-                    "Usuario Creado"));*/
-        
+         user.setNombre("Yonathan");
+         user.setContrasena("1070");
+         user.setUsuario("yonny");
+         usuarioCon.create(user);
+         FacesContext context = FacesContext.getCurrentInstance();
+         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+         "Usuario Creado"));*/
         //One to One
         /*Inversor inversor = new Inversor();
-        inversor.setNombre("Yonathan");
-        Cuenta cuenta = new Cuenta();
-        cuenta.setNumeroCuenta("123456-AB");
-        inversor.setCuenta(cuenta);
-        cuenta.setInversor(inversor);
-        //cuentaCon.create(cuenta);
-        inversorCon.create(inversor);
-        System.out.println("Finalizado...");*/
+         inversor.setNombre("Yonathan");
+         Cuenta cuenta = new Cuenta();
+         cuenta.setNumeroCuenta("123456-AB");
+         inversor.setCuenta(cuenta);
+         cuenta.setInversor(inversor);
+         //cuentaCon.create(cuenta);
+         inversorCon.create(inversor);
+         System.out.println("Finalizado...");*/
     }
+
     //Metodo que obtiene el valor del atributo Username
+
     public String getUsername() {
         return username;
     }
+
     //Metodo que asigna el valor del atributo username al parametro username
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     //Metodo que obtiene el valor del atributo password
+
     public String getPassword() {
         return password;
     }
+
     //Metodo que asigna el valor del atributo password al parametro password
+
     public void setPassword(String password) {
         this.password = password;
     }

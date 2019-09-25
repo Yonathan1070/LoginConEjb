@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +23,9 @@ import javax.persistence.Table;
  */
 //Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
-@Table(name = "usuario")
+@NamedQueries({
+    @NamedQuery(name = "login", query = "FROM Usuario u WHERE u.usuario = :username and  u.contrasena = :contrasena")
+})
 public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,6 +38,17 @@ public class Usuario implements Serializable{
     private String contrasena;
     @Column
     private String rol;
+
+    public Usuario() {
+    }
+
+    public Usuario(String nombre, String usuario, String contrasena, String rol) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.rol = rol;
+    }
+    
     // getter y setter de los atributos privados de la clase
     public int getId() {
         return id;

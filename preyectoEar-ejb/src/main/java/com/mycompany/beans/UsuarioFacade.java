@@ -8,11 +8,15 @@ package com.mycompany.beans;
 import com.mycompany.dto.Persona;
 import com.mycompany.interfaces.IUsuarioFacade;
 import com.mycompany.entity.Usuario;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * Declaracion de la Clase UsuarioFacade
@@ -34,12 +38,25 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
     @Override
     //Metodo donde se hace la consulta para validacion de los datos en el momento del Login
     public Persona login(String username, String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(password.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashText = number.toString(16);
+            while(hashText.length()<32){
+                hashText = "0"+hashText;
+            }
+            password = hashText;
+            
+        } catch (NoSuchAlgorithmException ex) {
+
+        }
         Persona dtoPersona = null;
         Usuario user = null;
         try {
-            Query consulta = em.createQuery("FROM Usuario u WHERE u.usuario = ?1 and  u.contrasena = ?2");
-            consulta.setParameter(1, username);
-            consulta.setParameter(2, password);
+            TypedQuery<Usuario> consulta = em.createNamedQuery("login", Usuario.class);
+            consulta.setParameter("username", username);
+            consulta.setParameter("contrasena", password);
             List<Usuario> lista = consulta.getResultList();
             if(!lista.isEmpty()){
                 user = lista.get(0);
@@ -50,6 +67,12 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
         }
 
         return dtoPersona;
+    }
+    
+    @Override
+    public void guardarUsuario(Persona usuario){
+        Usuario entUsuario = new Usuario(usuario.getNombres(), usuario.getUsername(), usuario.getPassword(), usuario.getRol());
+        create(entUsuario);
     }
     //Constructor de la clase
     public UsuarioFacade() {

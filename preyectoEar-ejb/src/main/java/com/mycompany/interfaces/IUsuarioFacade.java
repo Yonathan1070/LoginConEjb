@@ -36,4 +36,6 @@ public interface IUsuarioFacade {
     
     Persona login(String username, String password);
     
+    void guardarUsuario(Persona usuario);
+    
 }
