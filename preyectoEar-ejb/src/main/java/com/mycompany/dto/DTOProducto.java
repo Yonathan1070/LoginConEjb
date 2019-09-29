@@ -18,6 +18,8 @@ public class DTOProducto implements Serializable{
     private int cantidad;
     private double valor;
     private String foto;
+    private int cantSeleccionada;
+    private double total;
 
     public DTOProducto() {
     }
@@ -28,6 +30,11 @@ public class DTOProducto implements Serializable{
         this.cantidad = cantidad;
         this.valor = valor;
         this.foto = foto;
+    }
+
+    public DTOProducto(int id, int cantSeleccionada) {
+        this.id = id;
+        this.cantSeleccionada = cantSeleccionada;
     }
 
     public int getId() {
@@ -77,6 +84,24 @@ public class DTOProducto implements Serializable{
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public int getCantSeleccionada() {
+        return cantSeleccionada;
+    }
+
+    public void setCantSeleccionada(int cantSeleccionada) {
+        this.cantSeleccionada = cantSeleccionada;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    
     
     
 }

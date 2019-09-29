@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../WEB-INF/templates/cliente/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+        <title>#{clienteController.sesion.user.rol}</title>
+        <f:event type="preRenderView" listener="#{clienteController.sesion.valSes('Cliente')}" />
+    </ui:define>
+    <ui:define name="title">
+        <p:growl life="4000"/>
+        <h2 class="align-center">
+            #{msg.bienvenida}
+            <span class="text-aqua"> 
+                <i>
+                    <a style="text-transform: none;text-decoration: none"> #{clienteController.sesion.user.rol}JPA</a>
+                </i>
+            </span>
+            <br/>
+        </h2>
+    </ui:define>
+    <ui:define name="body">
+        <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+            <div class="box-header with-border">
+                <b>Acá</b> Titulo
+            </div>
+            <div class="box-body">
+                <h:form id="dtVentas">
+                    <p:growl id="add" showDetail="true" />
+                    <p:dataTable id="basicDT" var="venta" value="#{comprasController.listaCompras}" class="table table-responsive" style="width: 300px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" paginator="true" rows="10" >
+                        <f:facet name="{Exporters}">
+                            <div style="float:right;padding-top: 5px;">
+                                <h:commandLink >
+                                    <p:graphicImage library="images" name="pdf.ico" width="24"/>
+                                    <p:dataExporter type="pdf" target="basicDT" fileName="productos"/>
+                                </h:commandLink>
+                            </div>
+                        </f:facet>
+                        <p:column headerText="Productos" style="width: 250px">
+                            <p:outputLabel value="#{venta.producto.nombre}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandLink update=":dtVentas:ventaDetalle" oncomplete="PF('ventaDialogo').show()" title="Ver Detalle">
+                                <h:outputText class="fa fa-search" style="margin:0 auto;"/>
+                                <f:setPropertyActionListener value="#{venta}" target="#{comprasController.ventaSeleccionada}" />
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:dialog header="Información Producto" widgetVar="ventaDialogo" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="ventaDetalle" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty comprasController.ventaSeleccionada}">
+                                <f:facet name="header">
+                                    <p:graphicImage style="width: 150px" library="images" name="#{comprasController.ventaSeleccionada.producto.foto}"/> 
+                                </f:facet>
+
+                                <h:outputText value="Id:" />
+                                <h:outputText value="#{comprasController.ventaSeleccionada.id}" />
+
+                                <h:outputText value="Fecha" />
+                                <h:outputText value="#{comprasController.ventaSeleccionada.fecha}" />
+
+                                <h:outputText value="Cantidad:" />
+                                <h:outputText value="#{comprasController.ventaSeleccionada.cantidad}"/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

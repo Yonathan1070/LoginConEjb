@@ -3,7 +3,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="../WEB-INF/templates/cliente/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="head-end">
         <ui:param name="renderBreadCrumb" value="false"/>
         <title>#{clienteController.sesion.user.rol}</title>
@@ -29,12 +30,9 @@
             <div class="box-body">
                 <h:form id="dtProductos">
                     <p:growl id="add" showDetail="true" />
-                    <p:dataTable id="basicDT" var="producto" value="#{clienteController.listaProductos}" class="table table-responsive">
+                    <p:dataTable id="basicDT" var="producto" value="#{carritoController.sesion.listaProductos}" class="table table-responsive">
                         <p:column headerText="Id" style="display: none">
                             <h:outputText value="#{producto.id}" />
-                        </p:column>
-                        <p:column style="width: 150px">
-                            <p:graphicImage width="100px" library="images" name="#{producto.foto}"/> 
                         </p:column>
                         <p:column headerText="Producto" style="width: 250px">
                             <h:outputText value="#{producto.nombre}" />
@@ -42,22 +40,21 @@
                         <p:column headerText="Descripción" style="width: 250px">
                             <h:outputText value="#{producto.descripcion}" />
                         </p:column>
-                        <p:column headerText="Disponibles" style="width: 100px">
-                            <h:outputText value="#{producto.cantidad}" />
-                        </p:column>
-                        <p:column headerText="Costo" style="width: 100px">
-                            <h:outputText value="#{producto.valor}" />
-                        </p:column>
-                        <p:column headerText="Indique Cantidad" style="width: 150px">
-                            <p:inputText type="number" value="#{producto.cantSeleccionada}" />
+                        <p:column headerText="Cantidad" style="width: 100px">
+                            <h:outputText value="#{producto.cantSeleccionada}" />
                         </p:column>
                         <p:column style="width:32px;text-align: center">
-                            <p:commandLink action="#{clienteController.agregarCarrito()}" title="Agregar al Carrito" update=":dtProductos:add, :dtProductos:basicDT">
-                                <i class="fa fa-opencart fa-2x"></i>
-                                <f:setPropertyActionListener value="#{producto}" target="#{clienteController.productoSeleccionado}" />
+                            <p:commandLink action="#{carritoController.eliminarDelCarrito()}" title="Eliminar del Carrito" update=":dtProductos">
+                                <i class="fa fa-times fa-2x"></i>
+                                <f:setPropertyActionListener value="#{producto}" target="#{carritoController.productoSeleccionado}" />
                             </p:commandLink>
                         </p:column>
                     </p:dataTable>
+                    <p:outputLabel id="total" value="Total: #{carritoController.obtenerTotal()}"/>
+                    <c:if id="valid"  test="#{(carritoController.obtenerTotal()>0)}">
+                        <br /><br />
+                        <p:commandButton value="Terminar" update=":dtProductos:add, :dtProductos:basicDT" action="#{carritoController.finalizarCompra()}"  />
+                    </c:if>
                 </h:form>
             </div>
         </div>

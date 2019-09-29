@@ -35,4 +35,10 @@ public interface ProductoFacadeLocal {
     
     public List<DTOProducto> obtenerProductos();
     
+    boolean obtenerStockProducto(DTOProducto producto);
+    
+    void eliminarDelCarrito(DTOProducto producto);
+    
+    void agregarVenta(List<DTOProducto> listaProductos, int idUsuario);
+    
 }

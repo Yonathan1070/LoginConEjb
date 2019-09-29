@@ -6,11 +6,14 @@
 package com.mycompany.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,17 +36,21 @@ public class Producto implements Serializable{
     private double valor;
     @Column
     private String foto;
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Venta> listaVentas;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, int cantidad, double valor, String foto) {
+    public Producto(String nombre, String descripcion, int cantidad, double valor, String foto, List<Venta> listaVentas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.valor = valor;
         this.foto = foto;
+        this.listaVentas = listaVentas;
     }
+
 
     public int getId() {
         return id;
@@ -91,6 +98,14 @@ public class Producto implements Serializable{
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public List<Venta> getListaVentas() {
+        return listaVentas;
+    }
+
+    public void setListaVentas(List<Venta> listaVentas) {
+        this.listaVentas = listaVentas;
     }
     
     

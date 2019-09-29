@@ -5,9 +5,12 @@
  */
 package com.mycompany.controlador;
 
+import com.mycompany.dto.DTOProducto;
 import com.mycompany.dto.Persona;
 import com.mycompany.entity.Usuario;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -25,10 +28,12 @@ public class BeanSesion implements Serializable{
 
     //Declaracion del atributo privado de la clase
     private Persona user;
+    private List<DTOProducto> listaProductos;
     /**
      * Creacion nueva instancia de BeanSesion
      */
     public BeanSesion() {
+        listaProductos=new ArrayList();
     }
     
     //Metodo de validacion de la sesion que valida permisos y datos correctos no nulos 
@@ -70,4 +75,13 @@ public class BeanSesion implements Serializable{
     public void setUser(Persona user) {
         this.user = user;
     }
+
+    public List<DTOProducto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<DTOProducto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+    
 }
