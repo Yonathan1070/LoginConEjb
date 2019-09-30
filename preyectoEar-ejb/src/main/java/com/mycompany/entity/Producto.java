@@ -17,9 +17,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Producto
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table
 public class Producto implements Serializable{
@@ -38,10 +41,10 @@ public class Producto implements Serializable{
     private String foto;
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<Venta> listaVentas;
-
+    //Constructor vacio de la Clase
     public Producto() {
     }
-
+    //Constructor de los atributos privados de la Clase
     public Producto(String nombre, String descripcion, int cantidad, double valor, String foto, List<Venta> listaVentas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -51,7 +54,7 @@ public class Producto implements Serializable{
         this.listaVentas = listaVentas;
     }
 
-
+    //getter y setter de los atributos privados de la Clase
     public int getId() {
         return id;
     }

@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
  * Declaracion de la Clase MapsIdController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-2019 1.0
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped

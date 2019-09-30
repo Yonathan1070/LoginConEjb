@@ -12,11 +12,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase EmpleadoFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class EmpleadoFacade extends AbstractFacade<Empleado> implements EmpleadoFacadeLocal {
+    //Implementacion donde se llama a la unidad de Persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -24,7 +27,7 @@ public class EmpleadoFacade extends AbstractFacade<Empleado> implements Empleado
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la Clase
     public EmpleadoFacade() {
         super(Empleado.class);
     }

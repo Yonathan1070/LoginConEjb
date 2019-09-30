@@ -25,8 +25,11 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
- * @author Yonathan
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @NamedQueries({
     @NamedQuery(name = "ventas", query = "FROM Venta v WHERE :idUsuario = v.idUsuario GROUP BY v.fecha")
@@ -45,17 +48,17 @@ public class Venta implements Serializable{
     @Column
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
-
+    //Constructor vacio de la Clase
     public Venta() {
     }
-
+    //Constructor de los atributos privados de la Clase
     public Venta(int idUsuario, Producto producto, int cantidad, Date fecha) {
         this.idUsuario = idUsuario;
         this.producto = producto;
         this.cantidad = cantidad;
         this.fecha = fecha;
     }
-
+    //getter y setter de los atributos de la Clase
     public int getId() {
         return id;
     }

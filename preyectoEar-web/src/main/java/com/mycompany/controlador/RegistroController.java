@@ -18,25 +18,28 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase RegistroController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class RegistroController implements Serializable{
-    
+    //Declaracion de los atributos privados de la Clase
     private String nombre;
     private String username;
     private String password;
-    
+    //Implementacion de la interface IUsuarioFacade del paquete de interfaces del ejb
     @EJB
     IUsuarioFacade usuarioCon;
     /**
-     * Creates a new instance of RegistroController
+     * Creacion de una nueva instancia de  RegistroController
      */
+    //Constructor vacio de la Clase
     public RegistroController() {
     }
-
+    //getter y setter de los atributos de la Clase
     public String getNombre() {
         return nombre;
     }
@@ -60,7 +63,7 @@ public class RegistroController implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
+    //Metodo de Registro de usuario como Rol Cliente
     public void registrarUsuario(){
         try {
             Persona user = new Persona();

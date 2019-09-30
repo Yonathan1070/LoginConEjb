@@ -19,11 +19,14 @@ import javax.persistence.TypedQuery;
 import org.modelmapper.ModelMapper;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase VentaFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLocal {
+    //Implementacion donde se llama a la unidad de Persitencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -31,12 +34,13 @@ public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLoc
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la clase
     public VentaFacade() {
         super(Venta.class);
     }
     
     @Override
+    //Metodo para obtener la Lista de Ventas para cada Usuario
     public List<Venta> obtenerListaVentas(int idUsuario){
         List<Venta> listaVentas = new ArrayList();
         TypedQuery<Venta> consulta = em.createNamedQuery("ventas", Venta.class);

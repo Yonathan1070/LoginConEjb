@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
  * Declaracion de la Clase BeanSesion
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 @Named
 @SessionScoped

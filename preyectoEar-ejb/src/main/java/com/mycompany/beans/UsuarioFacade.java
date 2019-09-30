@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
  * Declaracion de la Clase UsuarioFacade
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-2019 1.0
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFacade {
@@ -70,6 +70,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements IUsuarioFa
     }
     
     @Override
+    //Metodo donde se Guarda el usuario
     public void guardarUsuario(Persona usuario){
         Usuario entUsuario = new Usuario(usuario.getNombres(), usuario.getUsername(), usuario.getPassword(), usuario.getRol());
         create(entUsuario);

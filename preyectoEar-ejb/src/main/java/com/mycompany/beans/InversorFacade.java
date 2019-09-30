@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
  * Declaracion de la Clase InversorFacade
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 @Stateless
 public class InversorFacade extends AbstractFacade<Inversor> implements InversorFacadeLocal {
@@ -51,6 +51,7 @@ public class InversorFacade extends AbstractFacade<Inversor> implements Inversor
     }
     
     @Override
+    //Metodo donde se Obtiene los datos de nombre y cuenta implementando el metodo Joincolumn
     public List<Inversor> obtenerConJoin(String nombre, String cuenta){
         TypedQuery<Inversor> consulta = em.createNamedQuery("join", Inversor.class);
         consulta.setParameter("nombre", nombre);

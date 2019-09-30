@@ -21,14 +21,17 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase ComprasController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class ComprasController implements Serializable{
-
+    //Declaracion atributos privados de la Clase
     private Venta ventaSeleccionada;
+    //Implementacion de la Interface VentaFacadeLocal del paquete interfaces del ejb
     @EJB
     VentaFacadeLocal ventaCon;
     
@@ -37,8 +40,9 @@ public class ComprasController implements Serializable{
     
     private List<Venta> listaVentas;
     /**
-     * Creates a new instance of ComprasController
+     * Creacion nueva instancia de ComprasController
      */
+    //Constructor que convierte la lista en un ArrayList
     public ComprasController() {
         listaVentas=new ArrayList();
     }
@@ -47,7 +51,7 @@ public class ComprasController implements Serializable{
     public void _init(){
         listaVentas=ventaCon.obtenerListaVentas(sesion.getUser().getId());
     }
-
+    //getter y setter de los atributos privados de la Clase
     public List<Venta> getListaCompras() {
         return listaVentas;
     }

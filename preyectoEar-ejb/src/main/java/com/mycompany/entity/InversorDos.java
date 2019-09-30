@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * Declaracion de la Clase InversorDos
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 //Entity donde se declara la tabla y columnas a utlizar en la BD
 @Entity
@@ -36,16 +36,16 @@ public class InversorDos implements Serializable{
     @OneToOne(mappedBy = "inversor", cascade = CascadeType.ALL,
               fetch = FetchType.LAZY, optional = false)
     private CuentaDos cuenta;
-    
+    //Constructor vacio de la Clase
     public InversorDos() {
     }
-
+    //Constructor de los atributos privados de la Clase
     public InversorDos(int id, String nombre, CuentaDos cuenta) {
         this.id = id;
         this.nombre = nombre;
         this.cuenta = cuenta;
     }
-
+    //getter y setter de los atributos privados de la Clase
     public int getId() {
         return id;
     }

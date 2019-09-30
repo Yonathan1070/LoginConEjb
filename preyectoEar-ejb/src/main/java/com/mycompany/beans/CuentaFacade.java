@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * Declaracion de la Clase CuentaFacade
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-2019 1.0
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class CuentaFacade extends AbstractFacade<Cuenta> implements CuentaFacadeLocal {

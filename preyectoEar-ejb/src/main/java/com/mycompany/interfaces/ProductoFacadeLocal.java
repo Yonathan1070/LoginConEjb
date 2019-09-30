@@ -11,10 +11,13 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Interface
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Local
+//Interface con las acciones a implementar
 public interface ProductoFacadeLocal {
 
     void create(Producto producto);

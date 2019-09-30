@@ -19,24 +19,27 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase ClienteController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class ClienteController implements Serializable{
-
+    //Declaracion de los atributos privados de la Clase
     private List<DTOProducto> listaProductos;
     private DTOProducto productoSeleccionado;
-    
+    //Implementacion de la Interface ProductoFacadeLocal del paquete interfaces del ejb
     @EJB
     ProductoFacadeLocal productoCon;
     
     @Inject
     private BeanSesion sesion;
     /**
-     * Creates a new instance of ClienteController
+     * Creacion nueva instancia de  ClienteController
      */
+    //Constructor que convierte la lista en un ArrayList
     public ClienteController() {
         listaProductos = new ArrayList();
     }
@@ -74,7 +77,7 @@ public class ClienteController implements Serializable{
     public void obtenerProductos(){
         listaProductos = productoCon.obtenerProductos();
     }
-    
+    //Metodo para agregar producto al carrito de compras
     public void agregarCarrito(){
         //DTOProducto producto = new DTOProducto(productoSeleccionado.getId(), productoSeleccionado.getCantSeleccionada());
         DTOProducto producto = productoSeleccionado;

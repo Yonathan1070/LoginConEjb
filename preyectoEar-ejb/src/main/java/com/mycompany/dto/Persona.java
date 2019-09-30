@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Declaracion de la Clase Persona
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 public class Persona implements Serializable{
     //Declaracion de los atributos privados de la clase

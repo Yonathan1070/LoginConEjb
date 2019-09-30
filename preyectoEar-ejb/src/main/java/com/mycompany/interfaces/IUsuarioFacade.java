@@ -11,10 +11,10 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Declaracion de la Interface
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 @Local
 //Interface con las acciones a implementar

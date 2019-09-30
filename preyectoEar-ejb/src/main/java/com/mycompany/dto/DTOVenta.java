@@ -9,25 +9,28 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase DTOVenta
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 public class DTOVenta implements Serializable{
+    //Declaracion de los atributos privados de la Clase
     private int id;
     private int idUsuario;
     private int cantidad;
     private Date fecha;
-
+    //Constrcutor vacio de la Clase
     public DTOVenta() {
     }
-
+    //Constructor de los atributos privados de la Clase
     public DTOVenta(int id, int idUsuario, int cantidad, Date fecha) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.cantidad = cantidad;
         this.fecha = fecha;
     }
-
+    //getter y setter de los atributos privados de la Clase
     public int getId() {
         return id;
     }

@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * Declaracion de la Clase Usuario
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 //Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
@@ -41,10 +41,10 @@ public class Usuario implements Serializable{
     private String contrasena;
     @Column
     private String rol;
-
+    //Constructor vacio de la Clase
     public Usuario() {
     }
-
+    //Constructor de los atributos privados de la Clase
     public Usuario(String nombre, String usuario, String contrasena, String rol) {
         this.nombre = nombre;
         this.usuario = usuario;

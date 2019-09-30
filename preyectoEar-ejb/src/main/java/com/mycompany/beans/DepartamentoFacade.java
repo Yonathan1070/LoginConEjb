@@ -12,11 +12,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase DepartamentoFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class DepartamentoFacade extends AbstractFacade<Departamento> implements DepartamentoFacadeLocal {
+    //Implementacion donde se llama a la unidad de Persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -24,7 +27,7 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> implements 
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la Clase
     public DepartamentoFacade() {
         super(Departamento.class);
     }

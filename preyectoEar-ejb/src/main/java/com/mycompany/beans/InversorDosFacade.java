@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  * Declaracion de la Clase InversorDosFacade
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 @Stateless
 public class InversorDosFacade extends AbstractFacade<InversorDos> implements InversorDosFacadeLocal {

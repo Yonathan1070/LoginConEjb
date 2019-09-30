@@ -17,9 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Empleado
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table
 public class Empleado implements Serializable{
@@ -33,16 +36,16 @@ public class Empleado implements Serializable{
     @ManyToOne
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;
-
+    //Constructor vacio de la Clase
     public Empleado() {
     }
-
+    //Constructor de los atributos de la Clase
     public Empleado(String nombre, int edad, Departamento departamento) {
         this.nombre = nombre;
         this.edad = edad;
         this.departamento = departamento;
     }
-
+    //getter y setter de los atributos de la Clase
     public int getId() {
         return id;
     }

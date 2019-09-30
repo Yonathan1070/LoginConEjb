@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Declaracion de la Clase SupervisorController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-2019 1.0
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped

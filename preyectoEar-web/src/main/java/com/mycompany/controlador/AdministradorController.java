@@ -23,7 +23,7 @@ import javax.inject.Named;
  * Declaracion de la Clase AdministradorController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-2019 1.0
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped
@@ -31,13 +31,13 @@ public class AdministradorController implements Serializable {
     
     @Inject
     private BeanSesion sesion;
-    
+    //implementacion de la Interface InversorFacadeLocal del paquete interfaces del ejb
     @EJB
     InversorFacadeLocal inversorCon;
-    
+    //Implementacion de la Interface DepartamentoFacadeLocal del paquete interfaces del ejb
     @EJB
     DepartamentoFacadeLocal depCon;
-    
+    //Implementacion de la Interface EmpleadoFacadeLocal del paquete interfaces del ejb
     @EJB
     EmpleadoFacadeLocal empCon;
     /**
@@ -58,12 +58,12 @@ public class AdministradorController implements Serializable {
             System.out.println("--------------------------------------------");
         }*/
     }
-    
+    //Metodo donde se Crea el Departamento
     public void crearDepartamento(){
         Departamento dep = new Departamento("Talento Humano", null);
         depCon.create(dep);
     }
-    
+    //Metodo donde se Crea el Cliente
     public void crearCliente(){
         Departamento depto = depCon.find(1);
         Empleado emp1 = new Empleado("Yonathan", 22, depto);

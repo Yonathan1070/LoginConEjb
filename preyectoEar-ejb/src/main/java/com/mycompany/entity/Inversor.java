@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * Declaracion de la Clase Inversor
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 //Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity

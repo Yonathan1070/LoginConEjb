@@ -6,8 +6,10 @@
 package com.mycompany.modelos;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase ProductoModel
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 public class ProductoModel {
     

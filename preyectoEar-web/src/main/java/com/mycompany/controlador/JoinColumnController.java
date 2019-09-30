@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
  * Declaracion de la Clase JoinColumnController
  * @author Yonathan Bohorquez
  * @author Manuel Bohorquez
- * @version 22-09-19 1.0
+ * @version 29-09-19 1.0
  */
 @Named
 @RequestScoped
@@ -28,7 +28,7 @@ public class JoinColumnController implements Serializable{
     //Declaracion atributos privados de la clase
     private String nombre;
     private String cuenta;
-    
+    //implementacion del Entity InversorDosFacadeLocal
     @EJB
     InversorDosFacadeLocal inversorCon;
     /**

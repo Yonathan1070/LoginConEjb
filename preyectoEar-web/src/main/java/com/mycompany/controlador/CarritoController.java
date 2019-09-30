@@ -19,29 +19,32 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase CarritoController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Named
 @RequestScoped
 public class CarritoController implements Serializable{
-
+    //Declaracion de los atributos privados de la Clase
     private double total;
     private List<DTOProducto> listaProductos;
     private DTOProducto productoSeleccionado;
-    
+    //Implementacion de la Interface ProductoFacadeLocal del paquete de interfaces del ejb
     @EJB
     ProductoFacadeLocal productoCon;
     
     @Inject
     private BeanSesion sesion;
     /**
-     * Creates a new instance of CarritoController
+     * Creacion de una nueva instancia de CarritoController
      */
+    //Constructor que convierte la lista en un ArrayList
     public CarritoController() {
         listaProductos = new ArrayList();
     }
-
+    //getter y setter de los atributos de la Clase
     public BeanSesion getSesion() {
         return sesion;
     }
@@ -66,7 +69,7 @@ public class CarritoController implements Serializable{
         this.listaProductos = listaProductos;
     }
     
-    
+    //Metodo que elimina Productos del carrito de compras
     public void eliminarDelCarrito(){
         DTOProducto producto = productoSeleccionado;
         sesion.getListaProductos().remove(producto);
@@ -76,7 +79,7 @@ public class CarritoController implements Serializable{
                         "Producto eliminado del Carrito.");
                 faces.addMessage(null, msg);
     }
-    
+    //Metodo que finaliza la compra 
     public void finalizarCompra(){
         productoCon.agregarVenta(sesion.getListaProductos(), sesion.getUser().getId());
         sesion.getListaProductos().clear();
@@ -85,7 +88,7 @@ public class CarritoController implements Serializable{
                         "Productos comprados.");
                 faces.addMessage(null, msg);
     }
-    
+    //Metodo que obtiene el valor total de los productos de la compra
     public double obtenerTotal(){
         listaProductos = sesion.getListaProductos();
         total=0;

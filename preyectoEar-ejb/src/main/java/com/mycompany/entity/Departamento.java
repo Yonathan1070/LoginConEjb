@@ -17,9 +17,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Departamento
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table
 public class Departamento implements Serializable{
@@ -30,15 +33,15 @@ public class Departamento implements Serializable{
     private String nombre;
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
     private List<Empleado> listaEmpleados;
-
+    //Constructor vacio de la Clase
     public Departamento() {
     }
-
+    //Constructor de los atributos de la Clase
     public Departamento(String nombre, List<Empleado> listaEmpleados) {
         this.nombre = nombre;
         this.listaEmpleados = listaEmpleados;
     }
-
+    //getter y setter de los atributos de la Clase
     public int getId() {
         return id;
     }

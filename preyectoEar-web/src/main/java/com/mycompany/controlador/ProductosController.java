@@ -30,25 +30,27 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase ProductosController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Named
 @ViewScoped
 public class ProductosController implements Serializable {
-
+    //Declaracion atributos privados de la Clase
     private UploadedFile file;
     private String nombre;
     private String descripcion;
     private int cantidad;
     private double valor;
     private List<DTOProducto> listaProductos;
-
+    //Implementacion de la interface ProductFacadeLocal del paquete de interfaces del ejb
     @EJB
     ProductoFacadeLocal productoCon;
 
     /**
-     * Creates a new instance of ProductosController
+     * Creacion una nueva instancia de ProductosController
      */
     public ProductosController() {
         listaProductos = new ArrayList();
@@ -58,7 +60,7 @@ public class ProductosController implements Serializable {
     public void _init(){
         listaProductos = productoCon.obtenerProductos();
     }
-
+    //getter y setter de los atributos de la Clase
     public String getNombre() {
         return nombre;
     }
@@ -112,7 +114,7 @@ public class ProductosController implements Serializable {
             file = event.getFile();
         }
     }
-
+    //Metodo de guardado de Productos
     public void guardar() {
         try {
             if (file != null) {
@@ -130,7 +132,7 @@ public class ProductosController implements Serializable {
             System.out.println("Error: " + e);
         }
     }
-
+    //Metodo de Guardado de la Imagen del Producto
     public String copyFile(String fileName, InputStream in) {
         String nombreA = "";
         try {
@@ -163,7 +165,7 @@ public class ProductosController implements Serializable {
         }
         return nombreA;
     }
-    
+    //Metodo para Obtener Productos
     public void obtenerProductos(){
         listaProductos = productoCon.obtenerProductos();
     }

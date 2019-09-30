@@ -24,12 +24,14 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import org.modelmapper.ModelMapper;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase ProductoFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 29-09-2019 1.0
  */
 @Stateless
 public class ProductoFacade extends AbstractFacade<Producto> implements ProductoFacadeLocal {
-
+    //implementacion donde se llama a la unidad de Persistencia
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
 
@@ -37,12 +39,13 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    //Constructor de la Clase
     public ProductoFacade() {
         super(Producto.class);
     }
 
     @Override
+    //Metodo de CrearProducto
     public void crearProducto(DTOProducto producto) {
         ModelMapper modelMapper = new ModelMapper();
         Producto productoEntity = modelMapper.map(producto, Producto.class);
@@ -50,6 +53,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     }
 
     @Override
+    //Metodo para ObtenerProducto
     public List<DTOProducto> obtenerProductos() {
 
         ModelMapper modelMapper = new ModelMapper();
@@ -64,6 +68,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     }
 
     @Override
+    //Metodo para Obtener el Stock del Producto 
     public boolean obtenerStockProducto(DTOProducto producto) {
 
         Producto eProducto = new Producto();
@@ -78,6 +83,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     }
 
     @Override
+    //Metodo para Eliminar  Carrito y Productos añadidos
     public void eliminarDelCarrito(DTOProducto producto) {
         Producto eProducto = find(producto.getId());
         eProducto.setCantidad(eProducto.getCantidad() + producto.getCantSeleccionada());
@@ -85,6 +91,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     }
     
     @Override
+    //Metodo para Agregar Venta
     public void agregarVenta(List<DTOProducto> listaProductos, int idUsuario){
         for (DTOProducto dtoProducto : listaProductos) {
             Producto eProducto = find(dtoProducto.getId());
