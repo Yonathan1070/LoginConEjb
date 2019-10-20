@@ -10,7 +10,6 @@ import com.mycompany.dto.DTOInversor;
 import com.mycompany.entity.Cuenta;
 import com.mycompany.interfaces.InversorFacadeLocal;
 import com.mycompany.entity.Inversor;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

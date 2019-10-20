@@ -5,9 +5,6 @@
  */
 package com.mycompany.beans;
 
-import com.mycompany.dto.DTOProducto;
-import com.mycompany.dto.DTOVenta;
-import com.mycompany.entity.Inversor;
 import com.mycompany.interfaces.VentaFacadeLocal;
 import com.mycompany.entity.Venta;
 import java.util.ArrayList;
@@ -16,7 +13,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.modelmapper.ModelMapper;
 
 /**
  * Declaracion de la Clase VentaFacade

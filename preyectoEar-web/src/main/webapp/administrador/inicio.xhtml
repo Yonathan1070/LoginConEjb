@@ -10,7 +10,7 @@
         <f:event type="preRenderView" listener="#{administradorController.sesion.valSes('Administrador')}" />
     </ui:define>
     <ui:define name="title">
-        <p:growl autoUpdate="true" life="4000"/>
+        <p:growl life="4000"/>
         <h2 class="align-center">
             #{msg.bienvenida}
             <span class="text-aqua"> 
@@ -32,6 +32,7 @@
                     <p:commandButton value="Add Depto" action="#{administradorController.crearDepartamento()}" update="@form:gr1" />
                     <p:commandButton value="Add Empleado" action="#{administradorController.crearCliente()}" update="@form:gr1" />
                     <p:commandButton value="#{msg.btnConsulta}" action="#{administradorController.consultaJoin()}" update="@form:gr1" />
+                    <p:commandButton value="Add Libro" action="#{administradorController.eliminar()}" update="@form:gr1" />
                 </h:form>
             </div>
         </div>

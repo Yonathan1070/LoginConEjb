@@ -1,0 +1,150 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../WEB-INF/templates/administrador/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:admin="http://xmlns.jcp.org/jsf/composite/admin">
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+        <title>#{administradorController.sesion.user.rol} | Registro clases</title>
+        <f:event type="preRenderView" listener="#{clasesManyController.sesion.valSes('Administrador')}" />
+    </ui:define>
+    <ui:define name="title">
+        <h2 class="align-center">
+            #{msg.bienvenida}
+            <span class="text-aqua"> 
+                <i>
+                    <a style="text-transform: none;text-decoration: none"> #{administradorController.sesion.user.rol}JPA</a>
+                </i>
+            </span>
+            <br/>
+        </h2>
+    </ui:define>
+    <ui:define name="body">
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+                        <div class="box-header with-border">
+                            Registro Clases
+                        </div>
+                        <div class="box-body">
+                            <h:form id="rClase" class="form-group">
+                                <p:growl />
+                                <p:panelGrid columns="2" styleClass="ui-fluid">
+                                    <p:outputLabel for="clase" value="Nombre Clase"/>
+                                    <p:inputText id="clase" value="#{clasesManyController.clase}" required="true" class="form-control"/>
+                                </p:panelGrid>
+                                <p:panelGrid columns="2" styleClass="ui-fluid">
+                                    <p:outputLabel for="duracion" value="Duración Clase"/>
+                                    <p:inputText type="number" id="duracion" value="#{clasesManyController.duracion}" required="true" class="form-control"/>
+                                </p:panelGrid>
+                                <p:commandButton update=":rClase, :asignar" action="#{clasesManyController.agregarClase()}" class="btn btn-block btn-info" value="Guardar Clase" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+                        <div class="box-header with-border">
+                            Registro Estudiantes
+                        </div>
+                        <div class="box-body">
+                            <h:form id="rEstudiante" class="form-group">
+                                <p:growl />
+                                <p:panelGrid columns="2" styleClass="ui-fluid">
+                                    <p:outputLabel for="cedula" value="Cedula Estudiante"/>
+                                    <p:inputText type="number" id="cedula" value="#{clasesManyController.cedula}" required="true" class="form-control"/>
+                                </p:panelGrid>
+                                <p:panelGrid columns="2" styleClass="ui-fluid">
+                                    <p:outputLabel for="nombre" value="Nombre Estudiante"/>
+                                    <p:inputText id="nombre" value="#{clasesManyController.nombre}" required="true" class="form-control"/>
+                                </p:panelGrid>
+                                <p:commandButton update=":rEstudiante, :asignar" action="#{clasesManyController.agregarEstudiante()}" class="btn btn-block btn-info" value="Guardar Estudiante" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+                    <div class="box-header with-border">
+                        Asignación
+                    </div>
+                    <div class="box-body">
+                        <h:form id="asignar">
+                            <p:growl id="add" showDetail="true"/>
+                            <p:panelGrid columns="5" styleClass="ui-fluid">
+                                <p:outputLabel value="Seleccione una Clase" />
+                                <p:selectOneMenu id="clases" value="#{clasesManyController.claseSeleccionada}" dynamic="true" style="width:125px" valueChangeListener="#{clasesManyController.filtroEstudiantes}" required="true">
+                                    <f:selectItem itemLabel="Elija una Clase" itemValue="0" />
+                                    <f:selectItems var="class" value="#{clasesManyController.listaClases}" itemLabel="#{class.nombre}" itemValue="#{class.id}" />
+                                    <p:ajax update=":asignar:estudiantes, :listEstudiantes:dtEstudiantes"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Seleccione un estudiante" />
+                                <p:selectOneMenu id="estudiantes" value="#{clasesManyController.estudianteSeleccionado}" dynamic="true" style="width:225px" required="true">
+                                    <f:selectItem itemLabel="Elija un Estudiante" itemValue="" />
+                                    <f:selectItems var="est" value="#{clasesManyController.listaEstudiantes}" itemLabel="#{est.nombre}" itemValue="#{est.id}" />
+                                </p:selectOneMenu>
+                                <p:commandButton value="Asignar Clase" action="#{clasesManyController.asignarClase()}" update=":asignar, :asignar:add, :listEstudiantes:dtEstudiantes" class="btn btn-info" />
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
+                    <div class="box-header with-border">
+                        Listado de Estudiantes
+                    </div>
+                    <div class="box-body">
+                        <h:form id="listEstudiantes">
+                            <p:growl id="addNota" showDetail="true"/>
+                            <p:dataTable id="dtEstudiantes" var="est" value="#{clasesManyController.listaPorMaterias}" editable="true" style="margin-bottom:20px">
+                                <f:facet name="header">
+                                    Listado de Estudiantes
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{clasesManyController.onRowEdit}" update=":listEstudiantes:addNota, :listEstudiantes:dtEstudiantes" />
+                                <p:ajax event="rowEditCancel" listener="#{clasesManyController.onRowCancel}" update=":listEstudiantes:addNota" />
+
+                                <p:column headerText="Id" style="display: none">
+                                    <h:outputText value="#{est.id}" />
+                                </p:column>
+
+                                <p:column headerText="Documento">
+                                    <h:outputText value="#{est.cedula}" >
+                                        <f:convertNumber/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{est.nombre}" />
+                                </p:column>
+
+                                <p:column headerText="Nota">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{est.nota}" /></f:facet>
+                                        <f:facet name="input">
+                                            <p:inputMask id="nota" value="#{clasesManyController.nota}" style="width:100%" mask="9.9" label="Nota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:32px;text-align: center">
+                                    <p:rowEditor />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

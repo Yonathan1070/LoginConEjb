@@ -5,12 +5,15 @@
  */
 package com.mycompany.controlador;
 
+import com.mycompany.entity.Autor;
 import com.mycompany.entity.Departamento;
 import com.mycompany.entity.Empleado;
-import com.mycompany.entity.Inversor;
+import com.mycompany.entity.Libro;
+import com.mycompany.interfaces.AutorFacadeLocal;
 import com.mycompany.interfaces.DepartamentoFacadeLocal;
 import com.mycompany.interfaces.EmpleadoFacadeLocal;
 import com.mycompany.interfaces.InversorFacadeLocal;
+import com.mycompany.interfaces.LibroFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,12 @@ public class AdministradorController implements Serializable {
     //Implementacion de la Interface EmpleadoFacadeLocal del paquete interfaces del ejb
     @EJB
     EmpleadoFacadeLocal empCon;
+    
+    @EJB
+    AutorFacadeLocal auCon;
+    
+    @EJB
+    LibroFacadeLocal liCon;
     /**
      * Creacion nueva instancia AdministradorController
      */
@@ -83,7 +92,61 @@ public class AdministradorController implements Serializable {
         this.sesion = sesion;
     }
     
+    public void agregar(){
+        Autor au = new Autor(1070, "Yonathan");
+        auCon.create(au);
+        Libro li = new Libro(123, "las aventuras del potrillo");
+        liCon.create(li);
+    }
     
+    public void agregarConRelacion(){
+        Autor au = new Autor(1071, "Camilo");
+        Libro li = new Libro(1234, "Algo");
+        List<Autor> liAu = new ArrayList();
+        List<Libro> liLi = new ArrayList();
+        liAu.add(au);
+        liLi.add(li);
+        
+        au.setListaLibros(liLi);
+        li.setListaAutores(liAu);
+        
+        liCon.create(li);
+    }
     
+    public void crearAutorLibroExistente(){
+        Libro li = liCon.find(1234);
+        Autor au = new Autor(159, "Maria");
+        li.getListaAutores().add(au);
+        liCon.edit(li);
+    }
     
+    public void crearLibroAutorExistente(){
+        Autor au = auCon.find(1070);
+        Libro li = new Libro(163, "Maravilla");
+        au.getListaLibros().add(li);
+        auCon.edit(au);
+    }
+    
+    public void editarDesdeLibro(){
+        Libro li = liCon.find(1234);
+        li.setNombre("algo");
+        li.getListaAutores().get(0).setNombre("otra cosa");
+        liCon.edit(li);
+    }
+    
+    public void eliminar(){
+        Libro li = liCon.find(1234);
+        li.getListaAutores().remove(0);
+        liCon.edit(li);
+    }
+    
+    public void eliminarDesdeAut(){
+        Autor au = auCon.find(159);
+        auCon.remove(au);
+    }
+    
+    public void eliminarLibro(){
+        //Se elimina primero las relaciones desde el lado del autor y luego eliminar el libro
+        
+    }
 }

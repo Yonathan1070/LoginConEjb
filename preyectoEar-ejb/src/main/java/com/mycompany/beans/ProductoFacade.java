@@ -8,19 +8,13 @@ package com.mycompany.beans;
 import com.mycompany.dto.DTOProducto;
 import com.mycompany.interfaces.ProductoFacadeLocal;
 import com.mycompany.entity.Producto;
-import com.mycompany.entity.Usuario;
 import com.mycompany.entity.Venta;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import org.modelmapper.ModelMapper;
 
 /**
