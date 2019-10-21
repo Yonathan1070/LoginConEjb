@@ -17,10 +17,13 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author Admin
+ * Declaracion de EstudianteMFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
+//Declaracion de la Clase
 public class EstudianteMFacade extends AbstractFacade<EstudianteM> implements EstudianteMFacadeLocal {
     @PersistenceContext(unitName = "linea_UN")
     private EntityManager em;
@@ -35,6 +38,7 @@ public class EstudianteMFacade extends AbstractFacade<EstudianteM> implements Es
     }
     
     @Override
+    //Metodo para listar estudiantes por materia
     public List<EstudianteM> filtro(int id_clase) {
         List<EstudianteM> listaCompleta = findAll();
         //TypedQuery<EstudianteM> consulta = em.createNamedQuery("consulta", EstudianteM.class);

@@ -22,8 +22,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 
 /**
- *
- * @author Admin
+ * Declaracion InfoFcade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
 public class InfoFacade extends AbstractFacade<Info> implements InfoFacadeLocal {
@@ -41,6 +43,7 @@ public class InfoFacade extends AbstractFacade<Info> implements InfoFacadeLocal 
     }
 
     @Override
+    //Metodo para obtener estudiantes filtrado por materia
     public List<DTOInfo> obtenerEstudiantesConStore(Integer id) {
         Query q = em.createNativeQuery("select c.id, c.nombre, e.id, e.cedula, e.nombre, ec.nota from estudiante e join estudiante_clase ec on ec.estudiante_id = e.id join clase c on c.id = ec.clase_id where c.id = ?1");
         q.setParameter(1, id);

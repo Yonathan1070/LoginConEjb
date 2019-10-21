@@ -9,9 +9,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- *
- * @author Admin
+ * Declaracion de la Clase Info
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
+//Entity donde se declara la vista y columnas a utilizar
 @Entity
 @Table(name = "vista_info")
 @NamedStoredProcedureQueries({
@@ -35,10 +38,10 @@ public class Info implements Serializable {
     private String nombre;
     @Column
     private String nota;
-
+    //Constructor vacio de la clase
     public Info() {
     }
-
+    //Constructor de los atributos de la clase
     public Info(int id, String clase, int idEstudiante, double cedula, String nombre, String nota) {
         this.id = id;
         this.clase = clase;
@@ -47,7 +50,7 @@ public class Info implements Serializable {
         this.nombre = nombre;
         this.nota = nota;
     }
-
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

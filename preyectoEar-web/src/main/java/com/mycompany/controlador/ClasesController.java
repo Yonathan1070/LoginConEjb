@@ -26,13 +26,15 @@ import javax.inject.Named;
 import org.modelmapper.ModelMapper;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la clase ClasesController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Named
 @ViewScoped
 public class ClasesController implements Serializable {
-
+    //Declaracion de los atributos privados de la Clase
     @Inject
     private BeanSesion sesion;
 
@@ -47,23 +49,26 @@ public class ClasesController implements Serializable {
     private List<DTOInfo> listaPorMaterias;
     private DTOEstudiante estudianteEliminar;
     private List<DTOInfo> listaInfo;
-
+    //Implementacion de la Interface ClaseFacadeLocal del paquete interfaces del ejb
     @EJB
     ClaseFacadeLocal claseCon;
+    //Implementacion de la Interface EstudianteFacadeLocal del paquete interfaces del ejb
     @EJB
     EstudianteFacadeLocal estudianteCon;
+    //Implementacion de la Interface InfoFacadeLocal del paquete interfaces del ejb
     @EJB
     InfoFacadeLocal infoCon;
 
     /**
-     * Creates a new instance of ClasesController
+     * Creacion nueva instancia de ClasesController
      */
+    //Constructor que convierte las listas en ArrayList
     public ClasesController() {
         listaClases = new ArrayList();
         listaEstudiantes = new ArrayList();
         listaInfo = new ArrayList();
     }
-
+    //Metodo de Inicializacion del bean
     @PostConstruct
     public void _ini() {
         listaEstudiantes = estudianteCon.findAll();
@@ -71,7 +76,7 @@ public class ClasesController implements Serializable {
         listaPorMaterias = new ArrayList();
         listaInfo = infoCon.obtenerEstudiantesConStore(duracion);
     }
-
+    //Metodo para agregar nuevas clases
     public void agregarClase() {
         Clase entClase = new Clase(clase, duracion);
         claseCon.create(entClase);
@@ -79,7 +84,7 @@ public class ClasesController implements Serializable {
         FacesMessage msg = new FacesMessage("Clase Agregada.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo para agregar nuevos estudiantes
     public void agregarEstudiante() {
         Estudiante entEstudiante = new Estudiante(cedula, nombre);
         estudianteCon.create(entEstudiante);
@@ -87,19 +92,19 @@ public class ClasesController implements Serializable {
         FacesMessage msg = new FacesMessage("Estudiante Agregado.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo para obtener las clases agregadas
     public void obtenerClases() {
         listaClases = claseCon.findAll();
     }
-
+    //Metodo para obtener los estudiantes agregados
     public void obtenerEstudiantes() {
         listaEstudiantes = estudianteCon.findAll();
     }
-
+    //Metodos para obtener la lista de estudiantes completa
     public void obtenerListaEstCompleta(int idMateria) {
         listaPorMaterias = infoCon.obtenerEstudiantesConStore(idMateria);
     }
-
+    //Metodo para asignar las clases a un estudiante
     public void asignarClase() {
         Clase entClase = claseCon.find(claseSeleccionada);
         Estudiante entEstudiante = estudianteCon.find(estudianteSeleccionado);
@@ -110,7 +115,7 @@ public class ClasesController implements Serializable {
         FacesMessage msg = new FacesMessage("Clase Asignada.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo para la realizacion del filtro por materias
     public void filtroEstudiantes(ValueChangeEvent event) {
         if (event.getNewValue() != "0") {
             listaEstudiantes = estudianteCon.filtro((int) event.getNewValue());
@@ -120,7 +125,7 @@ public class ClasesController implements Serializable {
             listaPorMaterias.clear();
         }
     }
-
+    //Metodo para eliminar un curso ya agregado
     public void eliminarDelCurso() {
         Clase entClase = claseCon.find(claseSeleccionada);
         ModelMapper mp = new ModelMapper();
@@ -136,7 +141,7 @@ public class ClasesController implements Serializable {
                 "Estudiante eliminado del Curso");
         faces.addMessage(null, msg);
     }
-
+    //getter y setter de los atributos de la clase
     public BeanSesion getSesion() {
         return sesion;
     }

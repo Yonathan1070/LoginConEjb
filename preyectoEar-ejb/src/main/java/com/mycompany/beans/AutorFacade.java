@@ -12,8 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Yonathan
+ * Declaracion del AutorFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
 public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLocal {

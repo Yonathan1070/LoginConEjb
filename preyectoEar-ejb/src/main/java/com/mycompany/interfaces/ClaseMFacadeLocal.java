@@ -10,10 +10,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
- * @author Admin
+ * Declaracion de la interface
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
  */
 @Local
+//Interface con las acciones a ejecutar
 public interface ClaseMFacadeLocal {
 
     void create(ClaseM claseM);

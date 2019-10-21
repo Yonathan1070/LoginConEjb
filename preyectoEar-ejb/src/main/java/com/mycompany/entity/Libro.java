@@ -19,9 +19,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Libro
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD
 @Entity
 @Table
 public class Libro implements Serializable{
@@ -35,10 +38,10 @@ public class Libro implements Serializable{
             )
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Autor> listaAutores;
-
+    //Constructor vacio de la Clase
     public Libro() {
     }
-
+    //Constructor de los atributos de la clase
     public Libro(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -48,7 +51,7 @@ public class Libro implements Serializable{
         this.nombre = nombre;
         this.listaAutores = listaAutores;
     }
-
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

@@ -12,9 +12,12 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- *
- * @author Admin
+ * Declaracion de la Clase ClaseM
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
+//Entity donde se declara la tabla y columna a utilizar en la BD con relacion uno a muchos 
 @Entity
 @Table(name = "clase")
 public class ClaseM implements Serializable{
@@ -27,15 +30,15 @@ public class ClaseM implements Serializable{
     private int duracion;
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL)
     private Set<EstudianteClase> listaEstudiantes;
-
+    //Constructor vacio de la clase
     public ClaseM() {
     }
-
+    //Constructor de los atributos de la clase
     public ClaseM(String nombre, int duracion) {
         this.nombre = nombre;
         this.duracion = duracion;
     }
-    
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

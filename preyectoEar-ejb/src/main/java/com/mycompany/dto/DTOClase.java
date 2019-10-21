@@ -6,23 +6,26 @@
 package com.mycompany.dto;
 
 /**
- *
- * @author Admin
+ * Declaracion de la Clase DTOClase
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 public class DTOClase {
+    //Declaracion de los atributos privados de la clase
     private int id;
     private String nombre;
     private int duracion;
-
+    //Constructor vacio de la clase
     public DTOClase() {
     }
-
+    //Constructor de los atributos de la clase
     public DTOClase(int id, String nombre, int duracion) {
         this.id = id;
         this.nombre = nombre;
         this.duracion = duracion;
     }
-
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

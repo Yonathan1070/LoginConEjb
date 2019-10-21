@@ -29,13 +29,15 @@ import javax.inject.Inject;
 import org.primefaces.event.RowEditEvent;
 
 /**
- *
- * @author Admin
+ * Declaracion de la clase ClasesController
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Named
 @ViewScoped
 public class ClasesManyController implements Serializable {
-
+    //Declaracion de los atributos privados de la Clase
     @Inject
     private BeanSesion sesion;
 
@@ -51,22 +53,25 @@ public class ClasesManyController implements Serializable {
     private DTOEstudiante estudianteEliminar;
     private List<DTOInfo> listaInfo;
     private String nota;
-
+    //Implementacion de la Interface ClaseMFacadeLocal del paquete interfaces del ejb
     @EJB
     ClaseMFacadeLocal claseCon;
+    //Implementacion de la Interface EstudianteMFacadeLocal del paquete interfaces del ejb
     @EJB
     EstudianteMFacadeLocal estudianteCon;
+    //Implementacion de la Interface InfoFacadeLocal del paquete interfaces del ejb
     @EJB
     InfoFacadeLocal infoCon;
+    //Implementacion de la Interface EstudianteClaseFacadeLocal del paquete interfaces del ejb
     @EJB
     EstudianteClaseFacadeLocal ecCon;
-
+    //Constructor que convierte las listas en ArrayList
     public ClasesManyController() {
         listaClases = new ArrayList();
         listaEstudiantes = new ArrayList();
         listaInfo = new ArrayList();
     }
-
+    //Metodo de Inicializacion del bean
     @PostConstruct
     public void _ini() {
         listaEstudiantes = estudianteCon.findAll();
@@ -74,7 +79,7 @@ public class ClasesManyController implements Serializable {
         listaPorMaterias = new ArrayList();
         listaInfo = infoCon.obtenerEstudiantesConStore(duracion);
     }
-
+    //Metodo para agregar nuevas clases
     public void agregarClase() {
         ClaseM entClase = new ClaseM(clase, duracion);
         claseCon.create(entClase);
@@ -82,7 +87,7 @@ public class ClasesManyController implements Serializable {
         FacesMessage msg = new FacesMessage("Clase Agregada.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo para agregar nuevos estudiantes
     public void agregarEstudiante() {
         EstudianteM entEstudiante = new EstudianteM(cedula, nombre);
         estudianteCon.create(entEstudiante);
@@ -90,15 +95,15 @@ public class ClasesManyController implements Serializable {
         FacesMessage msg = new FacesMessage("Estudiante Agregado.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo para obtener las clases agregadas
     public void obtenerClases() {
         listaClases = claseCon.findAll();
     }
-
+    //Metodo para obtener los estudiantes agregados
     public void obtenerEstudiantes() {
         listaEstudiantes = estudianteCon.findAll();
     }
-
+    //Metodo que filtra a los estudiantes por materias
     public void filtroEstudiantes(ValueChangeEvent event) {
         if (event.getNewValue() != "0") {
             listaEstudiantes = estudianteCon.filtro((int) event.getNewValue());
@@ -108,11 +113,11 @@ public class ClasesManyController implements Serializable {
             listaPorMaterias.clear();
         }
     }
-
+    //Metodo que obtiene la lista completa de estudiantes
     public void obtenerListaEstCompleta(int idMateria) {
         listaPorMaterias = infoCon.obtenerEstudiantesConStore(idMateria);
     }
-
+    //Metodo para asignar una clase a un estudiante
     public void asignarClase() {
         ClaseM entClase = claseCon.find(claseSeleccionada);
         EstudianteM entEstudiante = estudianteCon.find(estudianteSeleccionado);
@@ -126,7 +131,7 @@ public class ClasesManyController implements Serializable {
         FacesMessage msg = new FacesMessage("Clase Asignada.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo de edicion
     public void onRowEdit(RowEditEvent event) {
         EstudianteM estudiante = estudianteCon.find(((DTOInfo) event.getObject()).getIdEstudiante());
         ClaseM clase = claseCon.find(claseSeleccionada);
@@ -140,12 +145,12 @@ public class ClasesManyController implements Serializable {
         FacesMessage msg = new FacesMessage("Nota Asignada", ((DTOInfo) event.getObject()).getNombre());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //Metodo de cancelacion
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Operación cancelada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    //getter y setter de los atributos de la clase
     public BeanSesion getSesion() {
         return sesion;
     }

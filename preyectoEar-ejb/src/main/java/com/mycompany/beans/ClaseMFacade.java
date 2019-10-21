@@ -12,8 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author Admin
+ * Declaracion de ClaseMFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
 public class ClaseMFacade extends AbstractFacade<ClaseM> implements ClaseMFacadeLocal {

@@ -10,10 +10,13 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
- * @author Admin
+ * Declaracion de la interface
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Local
+//Interface con las acciones a ejecutar
 public interface EstudianteClaseFacadeLocal {
 
     void create(EstudianteClase estudianteClase);

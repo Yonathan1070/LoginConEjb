@@ -15,10 +15,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de EstudianteFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
+//Declaracion de la Clase
 public class EstudianteFacade extends AbstractFacade<Estudiante> implements EstudianteFacadeLocal {
 
     @PersistenceContext(unitName = "linea_UN")
@@ -34,6 +37,7 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> implements Estu
     }
 
     @Override
+    //Metodo de filtro de estudiantes por materia
     public List<Estudiante> filtro(int id_clase) {
         List<Estudiante> listaCompleta = findAll();
         TypedQuery<Estudiante> consulta = em.createNamedQuery("consulta", Estudiante.class);
@@ -57,6 +61,7 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> implements Estu
     }
     
     @Override
+    //Metodo de listar estudiantes por materia
     public List<Estudiante> estudiantesPorMaterias(int id_clase) {
         TypedQuery<Estudiante> consulta = em.createNamedQuery("consulta", Estudiante.class);
         consulta.setParameter("id_clase", id_clase);

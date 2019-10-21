@@ -12,9 +12,12 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- *
- * @author Admin
+ * Declaracion de la Clase EstudianteM
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar
 @Entity
 @Table(name = "estudiante")
 public class EstudianteM implements Serializable{
@@ -27,10 +30,10 @@ public class EstudianteM implements Serializable{
     private String nombre;
     @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
     private Set<EstudianteClase> listaClases = new HashSet();
-
+    //Constructor vacio de la clase
     public EstudianteM() {
     }
-
+    //Constructor de los atributos de la clase
     public EstudianteM(double cedula, String nombre) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -41,7 +44,7 @@ public class EstudianteM implements Serializable{
         this.cedula = cedula;
         this.nombre = nombre;
     }
-    
+    //getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

@@ -10,9 +10,12 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
- * @author Yonathan
+ * Declaracion de la Clase Clase
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
+//Entity donde se declara la tabla y columnas a utilizar en la BD con relacion muchos a muchos
 @Entity
 @Table
 public class Clase implements Serializable{
@@ -25,15 +28,15 @@ public class Clase implements Serializable{
     private int duracion;
     @ManyToMany(mappedBy = "listaClases")
     private List<Estudiante> listaEstudiantes;
-
+    //Constructor vacio de la clase
     public Clase() {
     }
-
+    //Constructor de los atributos de la clase
     public Clase(String nombre, int duracion) {
         this.nombre = nombre;
         this.duracion = duracion;
     }
-
+    // getter y setter de los atributos de la clase
     public int getId() {
         return id;
     }

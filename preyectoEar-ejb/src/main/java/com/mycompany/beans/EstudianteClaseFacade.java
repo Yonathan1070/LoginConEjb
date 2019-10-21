@@ -19,8 +19,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
- * @author Admin
+ * Declaracion de EstudianteClaseFacade
+ * @author Yonathan Bohorquez
+ * @author Manuel Bohorquez
+ * @version 20-10-19 1.0
  */
 @Stateless
 public class EstudianteClaseFacade extends AbstractFacade<EstudianteClase> implements EstudianteClaseFacadeLocal {
@@ -37,6 +39,7 @@ public class EstudianteClaseFacade extends AbstractFacade<EstudianteClase> imple
     }
     
     @Override
+    //Metodo para obtener datos estudiante
     public int obtenerDatos(int id_clase, int id_estudiante){
         Query q = em.createNativeQuery("select ec.id from estudiante_clase ec where ec.clase_id = ?1 and ec.estudiante_id=?2");
         q.setParameter(1, id_clase);
